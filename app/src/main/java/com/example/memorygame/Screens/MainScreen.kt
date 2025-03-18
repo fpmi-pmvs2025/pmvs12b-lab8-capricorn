@@ -19,7 +19,11 @@ import androidx.navigation.NavController
 import com.example.memorygame.ui.theme.MemoryGameTheme
 
 @Composable
-fun MainScreen(navController: NavController) {
+fun MainScreen(
+    onPlayClick: () -> Unit, // Обработчик для кнопки "Играть"
+    onSettingsClick: () -> Unit, // Обработчик для кнопки "Настройки"
+    onStatsClick: () -> Unit // Обработчик для кнопки "Статистика"
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -29,28 +33,32 @@ fun MainScreen(navController: NavController) {
     ) {
         // Кнопка "Играть"
         Button(
-            onClick = { navController.navigate("play") },
-            modifier = Modifier.fillMaxWidth()
+            onClick = onPlayClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
         ) {
-            Text(text = "Играть", fontSize = 18.sp)
+            Text(text = "Играть")
         }
-        Spacer(modifier = Modifier.height(16.dp))
 
         // Кнопка "Настройки"
         Button(
-            onClick = { navController.navigate("settings") },
-            modifier = Modifier.fillMaxWidth()
+            onClick = onSettingsClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
         ) {
-            Text(text = "Настройки", fontSize = 18.sp)
+            Text(text = "Настройки")
         }
-        Spacer(modifier = Modifier.height(16.dp))
 
         // Кнопка "Статистика"
         Button(
-            onClick = { navController.navigate("stats") },
-            modifier = Modifier.fillMaxWidth()
+            onClick = onStatsClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
         ) {
-            Text(text = "Статистика", fontSize = 18.sp)
+            Text(text = "Статистика")
         }
     }
 }
