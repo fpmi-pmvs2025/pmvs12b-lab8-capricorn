@@ -1,26 +1,36 @@
-package com.example.memorygame.Screens
-
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material3.*
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.memorygame.ui.theme.MemoryGameTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConfigurationsScreen(
-    onItemClick: (Int) -> Unit // Обработчик клика по элементу списка
+fun ConfigurationScreen(
+    onConfigurationSelected: (Int) -> Unit // Обработчик выбора конфигурации
 ) {
-    val configurations = remember { List(4) { "Configuration ${it + 1}" } } // Пример данных
+    val configurations = listOf(4, 6, 12, 24) // Фиксированные конфигурации
 
     Column(
         modifier = Modifier
@@ -29,7 +39,7 @@ fun ConfigurationsScreen(
     ) {
         // Toolbar (замените на ваш кастомный Toolbar)
         TopAppBar(
-            title = { Text("Configurations") },
+            title = { Text("Выберите конфигурацию") },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -43,10 +53,10 @@ fun ConfigurationsScreen(
             contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(configurations) { configuration ->
+            items(configurations) { numberOfCards ->
                 ConfigurationItem(
-                    text = configuration,
-                    onClick = { onItemClick(configurations.indexOf(configuration)) }
+                    text = "Играть с $numberOfCards карточками",
+                    onClick = { onConfigurationSelected(numberOfCards) }
                 )
             }
         }
@@ -83,20 +93,10 @@ fun ConfigurationItem(
                 modifier = Modifier.size(24.dp)
             ) {
                 Icon(
-                    imageVector = Icons.Default.KeyboardArrowRight,
-                    contentDescription = "Go to configuration"
+                    imageVector = Icons.Default.ArrowForward,
+                    contentDescription = "Выбрать конфигурацию"
                 )
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ConfigurationsScreenPreview() {
-    MemoryGameTheme {
-        ConfigurationsScreen(
-            onItemClick = {  }
-        )
     }
 }
