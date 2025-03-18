@@ -18,7 +18,8 @@ fun MyApp() {
             MainScreen(navController)
         }
         composable("play") {
-            PlayScreen()
+            PlayScreen(onNewGameClick = {},
+                onFabClick = {})
         }
         composable("settings") {
             SettingsScreen()
