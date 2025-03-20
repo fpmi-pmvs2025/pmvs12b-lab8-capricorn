@@ -26,7 +26,6 @@ fun StatsScreen() {
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // Карточка для "Won"
         StatCard(
             label = "Won",
             value = "10",
@@ -35,7 +34,6 @@ fun StatsScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Карточка для "Lose"
         StatCard(
             label = "Lose",
             value = "3",
@@ -44,7 +42,6 @@ fun StatsScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Карточка для "Attempts"
         StatCard(
             label = "Attempts",
             value = "3",
