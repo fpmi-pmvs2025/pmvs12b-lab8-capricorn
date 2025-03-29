@@ -1,6 +1,7 @@
 package com.example.memorygame.data.retrofit
 
 import com.example.memorygame.data.model.Cards
+import com.example.memorygame.data.model.DeckResponse
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
@@ -19,9 +20,3 @@ interface CardApiService {
 }
 
 
-data class DeckResponse(
-    val success: Boolean,
-    val deck_id: String,
-    val remaining: Int,
-    val shuffled: Boolean
-)

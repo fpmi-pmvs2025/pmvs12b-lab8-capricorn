@@ -13,6 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.memorygame.data.entity.Statistic
 import com.example.memorygame.ui.theme.MemoryGameTheme
+import com.example.memorygame.util.formatDate
+import com.example.memorygame.util.formatDuration
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -128,18 +130,7 @@ fun StatCard(startTime: String, duration: String, numberOfCards: Int, attempts: 
     }
 }
 
-@Composable
-fun formatDate(date: Date): String {
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
-    return dateFormat.format(date)
-}
 
-@Composable
-fun formatDuration(duration: Long): String {
-    val minutes = duration / 60000
-    val seconds = (duration % 60000) / 1000
-    return String.format("%d min %d sec", minutes, seconds)
-}
 
 @Preview(showBackground = true)
 @Composable

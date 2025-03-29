@@ -28,6 +28,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.memorygame.ui.theme.MemoryGameTheme
 import com.example.memorygame.PlayViewModel
+import com.example.memorygame.util.formatDuration
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
