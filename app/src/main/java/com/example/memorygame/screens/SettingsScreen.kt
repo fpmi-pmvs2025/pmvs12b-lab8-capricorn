@@ -1,4 +1,4 @@
-package com.example.memorygame.Screens
+package com.example.memorygame.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.input.TextFieldLineLimits
@@ -68,7 +68,9 @@ fun LanguageSettingsCard() {
 @Preview(showBackground = true)
 @Composable
 fun SettingsPreview() {
-    MemoryGameTheme {
+    MemoryGameTheme(
+        dynamicColor = false
+    ) {
         SettingsScreen()
     }
 }
