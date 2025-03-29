@@ -6,17 +6,16 @@ import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.memorygame.R
 import com.example.memorygame.ui.theme.MemoryGameTheme
 
 @Composable
@@ -48,34 +47,6 @@ fun SettingsScreen() {
     }
 }
 
-@Composable
-fun SettingsCategory(
-    title: String,
-    content: @Composable () -> Unit
-) {
-    Column(
-        modifier = Modifier.padding(bottom = 16.dp)
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.SemiBold,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-        Surface(
-            shape = MaterialTheme.shapes.medium,
-            color = MaterialTheme.colorScheme.surfaceVariant,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column(
-                modifier = Modifier.padding(16.dp)
-            ) {
-                content()
-            }
-        }
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -85,7 +56,7 @@ fun LanguageSettingsCard() {
     val textFieldState = rememberTextFieldState(options[0])
 
     SettingItem(
-        icon = Icons.Default.Settings,
+        icon = ImageVector.vectorResource(R.drawable.translate_24px),
         title = "Language",
         description = "Change app language"
     ) {
@@ -128,7 +99,7 @@ fun ThemeSettingsCard() {
     var darkThemeEnabled by remember { mutableStateOf(false) }
 
     SettingItem(
-        icon = Icons.Default.Favorite,
+        icon = ImageVector.vectorResource(R.drawable.dark_mode_24px),
         title = "Dark Theme",
         description = "Enable dark mode"
     ) {
@@ -144,19 +115,22 @@ fun SettingItem(
     icon: ImageVector,
     title: String,
     description: String,
+    compact: Boolean = false,
     content: @Composable () -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(if (compact) 64.dp else 72.dp) // Компактная высота для языковой настройки
     ) {
         Icon(
             imageVector = icon,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.primary,
             modifier = Modifier
-                .padding(end = 16.dp)
-                .size(24.dp)
+                .padding(end = 12.dp) // Уменьшенный отступ
+                .size(20.dp) // Уменьшенный размер иконки
         )
 
         Column(
@@ -164,18 +138,48 @@ fun SettingItem(
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Medium
+                style = MaterialTheme.typography.bodyMedium, // Меньший размер текста
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.padding(bottom = 2.dp) // Уменьшенный отступ
             )
             Text(
                 text = description,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.labelSmall, // Меньший размер описания
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
 
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(8.dp)) // Уменьшенный отступ
         content()
+    }
+}
+
+@Composable
+fun SettingsCategory(
+    title: String,
+    content: @Composable () -> Unit
+) {
+    Column(
+        modifier = Modifier.padding(bottom = 12.dp) // Уменьшенный отступ снизу
+    ) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleSmall, // Меньший размер заголовка
+            fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(bottom = 6.dp) // Уменьшенный отступ
+        )
+        Surface(
+            shape = MaterialTheme.shapes.medium,
+            color = MaterialTheme.colorScheme.surfaceVariant,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier.padding(vertical = 8.dp, horizontal = 12.dp) // Уменьшенные отступы
+            ) {
+                content()
+            }
+        }
     }
 }
 

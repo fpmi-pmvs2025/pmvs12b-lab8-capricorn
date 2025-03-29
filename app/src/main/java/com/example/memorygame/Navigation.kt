@@ -1,6 +1,6 @@
 package com.example.memorygame
 
-import ConfigurationScreen
+
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.example.memorygame.data.entity.Statistic
+import com.example.memorygame.screens.ConfigurationScreen
 import com.example.memorygame.screens.MainScreen
 import com.example.memorygame.screens.PlayScreen
 import com.example.memorygame.screens.SettingsScreen
