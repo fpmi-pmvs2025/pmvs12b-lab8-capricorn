@@ -15,5 +15,5 @@ interface GameDao {
     @Delete
     suspend fun delete(item: Statistic)
     @Query("SELECT * FROM statistics")
-    fun getAllStatistics(): LiveData<List<Statistic>>
+    suspend fun getAllStatistics(): List<Statistic>
 }
