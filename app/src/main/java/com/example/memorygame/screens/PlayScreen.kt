@@ -32,6 +32,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.memorygame.ui.theme.MemoryGameTheme
 import com.example.memorygame.PlayViewModel
 import com.example.memorygame.R
+import com.example.memorygame.data.entity.Statistic
 import com.example.memorygame.util.formatDuration
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -55,12 +56,25 @@ fun PlayScreen(
     val startTime = remember { mutableStateOf(Date()) }
     val totalFlips = remember { mutableStateOf(0) }
     val matchedPairs = remember { mutableStateOf(0) }
+    val isGameCompleted = matchedPairs.value == numberOfCards / 2
 
     LaunchedEffect(Unit) {
         isLoading.value = true
         viewModel.fetchCards(numberOfCards)
         isLoading.value = false
         startTime.value = Date()
+    }
+
+    LaunchedEffect(isGameCompleted) {
+        if (isGameCompleted && !isLoading.value) {
+            val gameStats = Statistic(
+                duration = System.currentTimeMillis() - startTime.value.time,
+                startTime = startTime.value,
+                numberOfCards = numberOfCards,
+                attempts = totalFlips.value
+            )
+            viewModel.saveGameResult(gameStats)
+        }
     }
 
     Box(

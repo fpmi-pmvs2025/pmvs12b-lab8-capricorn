@@ -55,7 +55,7 @@ class PlayViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 repository.upset(statistic)
-                fetchGameStats() // Refresh stats after saving
+                _gameStatsList.value = repository.getAllStatistics()
             } catch (e: Exception) {
                 _errorMessage.value = "Failed to save game result: ${e.message}"
             }
