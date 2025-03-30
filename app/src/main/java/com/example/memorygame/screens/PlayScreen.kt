@@ -93,7 +93,6 @@ fun PlayScreen(
                 TextButton(
                     onClick = {
                         showCompletionDialog.value = false
-                        onNewGameClick()
                     }
                 ) {
                     Text("OK")
