@@ -28,7 +28,6 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.memorygame.ui.theme.MemoryGameTheme
 import com.example.memorygame.PlayViewModel
 import com.example.memorygame.R
@@ -36,9 +35,7 @@ import com.example.memorygame.data.entity.Statistic
 import com.example.memorygame.util.formatDuration
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 
 @Composable
 fun PlayScreen(
@@ -57,6 +54,15 @@ fun PlayScreen(
     val totalFlips = remember { mutableStateOf(0) }
     val matchedPairs = remember { mutableStateOf(0) }
     val isGameCompleted = matchedPairs.value == numberOfCards / 2
+    val showCompletionDialog = remember { mutableStateOf(false) }
+
+    // Определяем количество колонок в зависимости от количества карт
+    val columns = when {
+        numberOfCards <= 6 -> 2
+        numberOfCards <= 12 -> 3
+        numberOfCards <= 20 -> 4
+        else -> 5
+    }
 
     LaunchedEffect(Unit) {
         isLoading.value = true
@@ -74,8 +80,28 @@ fun PlayScreen(
                 attempts = totalFlips.value
             )
             viewModel.saveGameResult(gameStats)
+            showCompletionDialog.value = true
         }
     }
+
+    if (showCompletionDialog.value) {
+        AlertDialog(
+            onDismissRequest = { /* Do nothing */ },
+            title = { Text(stringResource(R.string.congratulations)) },
+            text = { Text(stringResource(R.string.game_completed)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showCompletionDialog.value = false
+                        onNewGameClick()
+                    }
+                ) {
+                    Text("OK")
+                }
+            }
+        )
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -100,7 +126,7 @@ fun PlayScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(2),
+                    columns = GridCells.Fixed(columns),
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),
@@ -142,17 +168,6 @@ fun PlayScreen(
                 }
             }
         }
-
-        /*FloatingActionButton(
-            onClick = onFabClick,
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(end = 25.dp, bottom = 40.dp),
-            containerColor = Color.Green,
-            contentColor = Color.White
-        ) {
-            Icon(Icons.Default.Add, contentDescription = "Start Game")
-        }*/
     }
 }
 
@@ -261,21 +276,21 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
             ) {
                 Text(
                     text = stringResource(R.string.attempts_label),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 14.sp,
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Center
                 )
                 Text(
                     text = stringResource(R.string.matched_pairs_label),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 14.sp,
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Center
                 )
                 Text(
                     text = stringResource(R.string.time_label),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 14.sp,
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Center
@@ -291,7 +306,7 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
             ) {
                 Text(
                     text = totalAttempts.toString(),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier.weight(1f),
@@ -307,7 +322,7 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
                 )
                 Text(
                     text = duration,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = MaterialTheme.colorScheme.onBackground,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier.weight(1f),

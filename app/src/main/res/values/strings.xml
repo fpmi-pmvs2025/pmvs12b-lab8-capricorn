@@ -30,4 +30,6 @@
     <string name="duration_format">%1$d min %2$d sec</string>
     <string name="light_theme">Light</string>
     <string name="dark_theme">Dark</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="game_completed">You have completed the game!</string>
 </resources>

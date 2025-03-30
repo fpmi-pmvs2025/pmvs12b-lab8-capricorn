@@ -75,7 +75,7 @@ fun StatCard(startTime: String, duration: String, numberOfCards: Int, attempts: 
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
-            contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+            contentColor = MaterialTheme.colorScheme.onBackground
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
