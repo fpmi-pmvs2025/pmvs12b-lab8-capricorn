@@ -108,7 +108,7 @@ fun ConfigurationItem(
     }
 }
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun ConfigurationScreenPreview() {
     MemoryGameTheme(dynamicColor = false) {
@@ -116,4 +116,4 @@ fun ConfigurationScreenPreview() {
             onConfigurationSelected = {}
         )
     }
-}
+}*/

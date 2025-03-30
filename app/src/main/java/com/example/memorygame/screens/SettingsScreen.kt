@@ -16,11 +16,18 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.memorygame.R
+import com.example.memorygame.SettingsViewModel
 import com.example.memorygame.ui.theme.MemoryGameTheme
 
 @Composable
-fun SettingsScreen() {
+fun SettingsScreen(
+    viewModel: SettingsViewModel = hiltViewModel()
+) {
+    val currentTheme by viewModel.themeMode.collectAsStateWithLifecycle()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -38,12 +45,11 @@ fun SettingsScreen() {
             modifier = Modifier.verticalScroll(rememberScrollState())
         ) {
             SettingsCategory(title = stringResource(R.string.appearance_category)) {
-                ThemeSettingsCard()
+                ThemeSettingsCard(
+                    currentTheme = currentTheme,
+                    onThemeChanged = viewModel::setThemeMode
+                )
                 Spacer(modifier = Modifier.height(12.dp))
-            }
-
-            SettingsCategory(title = stringResource(R.string.language_category)) {
-                LanguageSettingsCard()
             }
         }
     }
@@ -51,18 +57,22 @@ fun SettingsScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LanguageSettingsCard() {
-    val options = listOf(
-        stringResource(R.string.english),
-        stringResource(R.string.russian)
+fun ThemeSettingsCard(
+    currentTheme: String,
+    onThemeChanged: (String) -> Unit
+) {
+    val themeOptions = listOf(
+        "light" to stringResource(R.string.light_theme),
+        "dark" to stringResource(R.string.dark_theme)
     )
+
     var expanded by remember { mutableStateOf(false) }
-    val textFieldState = rememberTextFieldState(options[0])
+    val currentThemeName = themeOptions.firstOrNull { it.first == currentTheme }?.second ?: stringResource(R.string.light_theme)
 
     SettingItem(
-        icon = ImageVector.vectorResource(R.drawable.translate_24px),
-        title = stringResource(R.string.language_title),
-        description = stringResource(R.string.language_desc)
+        icon = ImageVector.vectorResource(R.drawable.dark_mode_24px),
+        title = stringResource(R.string.dark_theme_title),
+        description = stringResource(R.string.dark_theme_desc)
     ) {
         ExposedDropdownMenuBox(
             expanded = expanded,
@@ -70,12 +80,11 @@ fun LanguageSettingsCard() {
         ) {
             TextField(
                 modifier = Modifier
-                    .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable)
+                    .menuAnchor()
                     .fillMaxWidth(),
-                state = textFieldState,
+                value = currentThemeName,
+                onValueChange = {},
                 readOnly = true,
-                lineLimits = TextFieldLineLimits.SingleLine,
-                label = { Text(stringResource(R.string.select_language)) },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 colors = ExposedDropdownMenuDefaults.textFieldColors(),
             )
@@ -83,34 +92,17 @@ fun LanguageSettingsCard() {
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
             ) {
-                options.forEach { option ->
+                themeOptions.forEach { (key, value) ->
                     DropdownMenuItem(
-                        text = { Text(option, style = MaterialTheme.typography.bodyLarge) },
+                        text = { Text(value) },
                         onClick = {
-                            textFieldState.setTextAndPlaceCursorAtEnd(option)
+                            onThemeChanged(key)
                             expanded = false
-                        },
-                        contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
+                        }
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun ThemeSettingsCard() {
-    var darkThemeEnabled by remember { mutableStateOf(false) }
-
-    SettingItem(
-        icon = ImageVector.vectorResource(R.drawable.dark_mode_24px),
-        title = stringResource(R.string.dark_theme_title),
-        description = stringResource(R.string.dark_theme_desc)
-    ) {
-        Switch(
-            checked = darkThemeEnabled,
-            onCheckedChange = { darkThemeEnabled = it }
-        )
     }
 }
 
@@ -190,7 +182,7 @@ fun SettingsCategory(
 @Preview(showBackground = true)
 @Composable
 fun SettingsPreview() {
-    MemoryGameTheme(
+    MemoryGameTheme(darkTheme = false,
         dynamicColor = false
     ) {
         Surface(

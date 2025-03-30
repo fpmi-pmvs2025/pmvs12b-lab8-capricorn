@@ -99,7 +99,7 @@ fun MainScreen(
     }
 }
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
     MemoryGameTheme(
@@ -111,4 +111,4 @@ fun MainScreenPreview() {
             onStatsClick = {}
         )
     }
-}
+}*/

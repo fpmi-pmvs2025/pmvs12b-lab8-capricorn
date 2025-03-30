@@ -28,6 +28,8 @@
     <string name="time_label">Время</string>
     <string name="date_format">dd.MM.yyyy HH:mm</string>
     <string name="duration_format">%1$d мин %2$d сек</string>
+    <string name="light_theme">Светлая</string>
+    <string name="dark_theme">Темная</string>
     <plurals name="minutes" tools:ignore="MissingDefaultResource">
         <item quantity="one">%d минута</item>
         <item quantity="few">%d минуты</item>

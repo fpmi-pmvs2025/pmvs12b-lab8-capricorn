@@ -76,7 +76,6 @@ fun PlayScreen(
             viewModel.saveGameResult(gameStats)
         }
     }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -325,7 +324,7 @@ data class CardData(
     val image: String
 )
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun PlayPreview() {
     MemoryGameTheme(
@@ -337,4 +336,4 @@ fun PlayPreview() {
             onFabClick = {}
         )
     }
-}
+}*/
