@@ -1,0 +1,8 @@
+title: Memory Game
+author: Ладик Алина, Романовец Алексей, Шейнин Василий.
+description: > # this means to ignore newlines until "baseurl:"
+  Проект "Memori Game"
+
+show_excerpts: true # set to false to remove excerpts on the homepage
+
+theme: jekyll-theme-cayman
