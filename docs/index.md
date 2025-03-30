@@ -7,4 +7,4 @@
 [Презентация проекта](projectPresentation.md)          
 [Тестирование](testing.md) 
 
-# Название проекта: **"Foodie"**
+# Название проекта: **"Memory Game"**
