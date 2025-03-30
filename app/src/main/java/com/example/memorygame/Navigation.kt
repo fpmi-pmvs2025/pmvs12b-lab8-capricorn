@@ -74,10 +74,7 @@ fun MyApp() {
 
         // Экран статистики
         composable("stats") {
-            StatsScreen(gameStatsList = listOf(
-                Statistic(duration = 300000, startTime = Date(), numberOfCards = 12, attempts = 3),
-                Statistic(duration = 600000, startTime = Date(), numberOfCards = 24, attempts = 5)
-            ))
+            StatsScreen(onBackClick = { navController.popBackStack() })
         }
     }
 }

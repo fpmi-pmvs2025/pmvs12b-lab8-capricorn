@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -40,7 +41,7 @@ fun PlayScreen(
     numberOfCards: Int,
     onNewGameClick: () -> Unit,
     onFabClick: () -> Unit,
-    viewModel: PlayViewModel = viewModel()
+    viewModel: PlayViewModel = hiltViewModel()
 ) {
     val scope = rememberCoroutineScope()
     val cards by viewModel.cards.collectAsState()

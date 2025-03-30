@@ -9,8 +9,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.memorygame.PlayViewModel
 import com.example.memorygame.data.entity.Statistic
 import com.example.memorygame.ui.theme.MemoryGameTheme
 import com.example.memorygame.util.formatDate
@@ -20,7 +24,11 @@ import java.util.Date
 import java.util.Locale
 
 @Composable
-fun StatsScreen(gameStatsList: List<Statistic>) {
+fun StatsScreen(
+    onBackClick: () -> Unit,
+    viewModel: PlayViewModel = hiltViewModel()
+) {
+    val gameStatsList by viewModel.gameStatsList.collectAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -132,7 +140,7 @@ fun StatCard(startTime: String, duration: String, numberOfCards: Int, attempts: 
 
 
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun StatsPreview() {
     MemoryGameTheme(
@@ -145,4 +153,4 @@ fun StatsPreview() {
             )
         )
     }
-}
+}*/
