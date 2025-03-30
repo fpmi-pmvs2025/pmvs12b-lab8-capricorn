@@ -17,14 +17,6 @@ class GameRepository(
     suspend fun getAllStatistics(): List<Statistic> {
         return db.getGameDao().getAllStatistics()
     }
-    /*suspend fun getDeck(): String {
-        val response = apiService.getDeck()
-        if (!response.isSuccessful || response.body()?.success != true) {
-            throw Exception("Failed to get deck: ${response.errorBody()?.string()}")
-        }
-        return response.body()?.deck_id ?: throw Exception("Deck ID is null")
-    }*/
-
     suspend fun getCardsForGame(numberOfCards: Int): List<CardData> {
         // Get deck
         val deckResponse = apiService.getDeck()
