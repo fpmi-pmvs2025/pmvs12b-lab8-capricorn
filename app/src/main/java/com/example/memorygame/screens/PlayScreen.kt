@@ -50,12 +50,14 @@ fun PlayScreen(
     val rotatedCards = remember { mutableStateMapOf<Int, Boolean>() }
     val isLoading = remember { mutableStateOf(true) }
     val startTime = remember { mutableStateOf(Date()) }
+    val totalFlips = remember { mutableStateOf(0) }
+    val matchedPairs = remember { mutableStateOf(0) }
 
     LaunchedEffect(Unit) {
         isLoading.value = true
         viewModel.fetchCards(numberOfCards)
         isLoading.value = false
-        startTime.value = Date() // Record the start time when the game begins
+        startTime.value = Date()
     }
 
     Box(
@@ -64,7 +66,6 @@ fun PlayScreen(
             .padding(16.dp)
     ) {
         if (isLoading.value) {
-            // Show loading indicator
             CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.Center)
             )
@@ -73,13 +74,11 @@ fun PlayScreen(
                 modifier = Modifier.fillMaxSize()
             ) {
                 val duration = System.currentTimeMillis() - startTime.value.time
-                val matchedPairs = matchedCards.size / 2
-                val totalAttempts = openedCards.size / 2
 
                 StatCard(
                     duration = formatDuration(duration),
-                    matchedPairs = matchedPairs,
-                    totalAttempts = totalAttempts
+                    matchedPairs = matchedPairs.value,
+                    totalAttempts = totalFlips.value
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -101,6 +100,7 @@ fun PlayScreen(
                             isRotated = rotatedCards[card.id] ?: false,
                             onClick = {
                                 if (openedCards.size < 2 && !openedCards.contains(card.id) && !matchedCards.contains(card.id)) {
+                                    totalFlips.value++
                                     rotatedCards[card.id] = true
                                     openedCards.add(card.id)
 
@@ -112,6 +112,7 @@ fun PlayScreen(
 
                                             if (firstCard?.value == secondCard?.value) {
                                                 matchedCards.addAll(openedCards)
+                                                matchedPairs.value++
                                             } else {
                                                 openedCards.forEach { rotatedCards[it] = false }
                                             }
