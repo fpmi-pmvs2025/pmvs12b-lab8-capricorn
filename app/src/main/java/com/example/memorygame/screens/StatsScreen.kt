@@ -7,21 +7,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.memorygame.PlayViewModel
+import com.example.memorygame.R
 import com.example.memorygame.data.entity.Statistic
 import com.example.memorygame.ui.theme.MemoryGameTheme
 import com.example.memorygame.util.formatDate
 import com.example.memorygame.util.formatDuration
-import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 
 @Composable
 fun StatsScreen(
@@ -29,19 +26,42 @@ fun StatsScreen(
     viewModel: PlayViewModel = hiltViewModel()
 ) {
     val gameStatsList by viewModel.gameStatsList.collectAsState()
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
     ) {
-        gameStatsList.forEach { gameStats ->
-            StatCard(
-                startTime = formatDate(gameStats.startTime),
-                duration = formatDuration(gameStats.duration),
-                numberOfCards = gameStats.numberOfCards,
-                attempts = gameStats.attempts
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(24.dp)
+        ) {
+            // Заголовок
+            Text(
+                text = stringResource(R.string.stats_title),
+                style = MaterialTheme.typography.headlineMedium,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(bottom = 24.dp)
             )
-            Spacer(modifier = Modifier.height(16.dp))
+
+            if (gameStatsList.isEmpty()) {
+                Text(
+                    text = stringResource(R.string.no_stats_data),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+            } else {
+                gameStatsList.forEach { gameStats ->
+                    StatCard(
+                        startTime = formatDate(gameStats.startTime),
+                        duration = formatDuration(gameStats.duration),
+                        numberOfCards = gameStats.numberOfCards,
+                        attempts = gameStats.attempts
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
+            }
         }
     }
 }
@@ -51,9 +71,13 @@ fun StatCard(startTime: String, duration: String, numberOfCards: Int, attempts: 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
-        shape = RoundedCornerShape(10.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
+            .padding(vertical = 8.dp),
+        shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(
             modifier = Modifier
@@ -66,91 +90,38 @@ fun StatCard(startTime: String, duration: String, numberOfCards: Int, attempts: 
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
-                    text = "Start Time:",
+                    text = stringResource(R.string.start_time),
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
-                    ),
-                    color = Color.Gray
+                        fontWeight = FontWeight.Bold
+                    )
                 )
                 Text(
-                    text = "Duration:",
+                    text = stringResource(R.string.duration),
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
-                    ),
-                    color = Color.Gray
+                        fontWeight = FontWeight.Bold
+                    )
                 )
                 Text(
-                    text = "Number of Cards:",
+                    text = stringResource(R.string.cards_count),
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
-                    ),
-                    color = Color.Gray
+                        fontWeight = FontWeight.Bold
+                    )
                 )
                 Text(
-                    text = "Attempts:",
+                    text = stringResource(R.string.attempts),
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp
-                    ),
-                    color = Color.Gray
+                        fontWeight = FontWeight.Bold
+                    )
                 )
             }
             Column(
                 horizontalAlignment = Alignment.End
             ) {
-                Text(
-                    text = startTime,
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        fontWeight = FontWeight.Normal,
-                        fontSize = 16.sp
-                    ),
-                    color = Color.Black
-                )
-                Text(
-                    text = duration,
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        fontWeight = FontWeight.Normal,
-                        fontSize = 16.sp
-                    ),
-                    color = Color.Black
-                )
-                Text(
-                    text = numberOfCards.toString(),
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        fontWeight = FontWeight.Normal,
-                        fontSize = 16.sp
-                    ),
-                    color = Color.Black
-                )
-                Text(
-                    text = attempts.toString(),
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        fontWeight = FontWeight.Normal,
-                        fontSize = 16.sp
-                    ),
-                    color = Color.Black
-                )
+                Text(text = startTime)
+                Text(text = duration)
+                Text(text = numberOfCards.toString())
+                Text(text = attempts.toString())
             }
         }
     }
 }
-
-
-
-/*@Preview(showBackground = true)
-@Composable
-fun StatsPreview() {
-    MemoryGameTheme(
-        dynamicColor = false
-    ) {
-        StatsScreen(
-            gameStatsList = listOf(
-                Statistic(duration = 300000, startTime = Date(), numberOfCards = 12, attempts = 3),
-                Statistic(duration = 600000, startTime = Date(), numberOfCards = 24, attempts = 5)
-            )
-        )
-    }
-}*/

@@ -18,7 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,6 +31,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.memorygame.ui.theme.MemoryGameTheme
 import com.example.memorygame.PlayViewModel
+import com.example.memorygame.R
 import com.example.memorygame.util.formatDuration
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -126,7 +129,7 @@ fun PlayScreen(
             }
         }
 
-        FloatingActionButton(
+        /*FloatingActionButton(
             onClick = onFabClick,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
@@ -135,7 +138,7 @@ fun PlayScreen(
             contentColor = Color.White
         ) {
             Icon(Icons.Default.Add, contentDescription = "Start Game")
-        }
+        }*/
     }
 }
 
@@ -171,7 +174,7 @@ fun FlipCard(
                 modifier = Modifier
                     .fillMaxSize()
                     .graphicsLayer {
-                        alpha = 1f - rotation / 180f // Плавное исчезновение
+                        alpha = 1f - rotation / 180f
                     },
                 contentAlignment = Alignment.Center
             ) {
@@ -196,8 +199,8 @@ fun FlipCard(
                 modifier = Modifier
                     .fillMaxSize()
                     .graphicsLayer {
-                        alpha = (rotation / 180f) // Плавное появление
-                        rotationY = 180f // Компенсируем зеркальность
+                        alpha = (rotation / 180f)
+                        rotationY = 180f
                     },
                 contentAlignment = Alignment.Center
             ) {
@@ -225,35 +228,78 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
             .fillMaxWidth()
             .padding(8.dp),
         shape = RoundedCornerShape(10.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+        ),
         elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
     ) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Attempts: $totalAttempts",
-                color = Color.Gray,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.SemiBold
-            )
+            // Строка с подписями
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = stringResource(R.string.attempts_label),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                    fontSize = 14.sp,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = stringResource(R.string.matched_pairs_label),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                    fontSize = 14.sp,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = stringResource(R.string.time_label),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                    fontSize = 14.sp,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center
+                )
+            }
 
-            Text(
-                text = "Matched Pairs: $matchedPairs",
-                color = Color.Green,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.SemiBold
-            )
+            Spacer(modifier = Modifier.height(4.dp))
 
-            Text(
-                text = "Duration: $duration",
-                color = Color.Black,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.SemiBold
-            )
+            // Строка со значениями
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = totalAttempts.toString(),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = matchedPairs.toString(),
+                    color = MaterialTheme.colorScheme.tertiary,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = duration,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.weight(1f),
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 }

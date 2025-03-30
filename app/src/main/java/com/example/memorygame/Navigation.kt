@@ -7,13 +7,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.example.memorygame.data.entity.Statistic
 import com.example.memorygame.screens.ConfigurationScreen
 import com.example.memorygame.screens.MainScreen
 import com.example.memorygame.screens.PlayScreen
 import com.example.memorygame.screens.SettingsScreen
 import com.example.memorygame.screens.StatsScreen
-import java.util.Date
 
 @Composable
 fun MyApp() {

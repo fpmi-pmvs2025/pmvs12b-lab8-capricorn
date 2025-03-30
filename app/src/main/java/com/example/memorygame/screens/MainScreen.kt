@@ -2,57 +2,113 @@ package com.example.memorygame.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.memorygame.R
+import com.example.memorygame.ui.theme.MemoryGameTheme
 
 @Composable
 fun MainScreen(
-    onPlayClick: () -> Unit, // Обработчик для кнопки "Играть"
-    onSettingsClick: () -> Unit, // Обработчик для кнопки "Настройки"
-    onStatsClick: () -> Unit // Обработчик для кнопки "Статистика"
+    onPlayClick: () -> Unit,
+    onSettingsClick: () -> Unit,
+    onStatsClick: () -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
     ) {
-        // Кнопка "Играть"
-        Button(
-            onClick = onPlayClick,
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
+                .fillMaxSize()
+                .padding(24.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Играть")
-        }
+            // Заголовок
+            Text(
+                text = stringResource(R.string.game_title),
+                style = MaterialTheme.typography.displaySmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(bottom = 32.dp)
+            )
 
-        // Кнопка "Настройки"
-        Button(
-            onClick = onSettingsClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-        ) {
-            Text(text = "Настройки")
-        }
+            // Кнопки с иконками
+            FilledTonalButton(
+                onClick = onPlayClick,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.filledTonalButtonColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            ) {
+                Icon(Icons.Default.PlayArrow, contentDescription = stringResource(R.string.play))
+                Spacer(Modifier.width(8.dp))
+                Text(text = stringResource(R.string.play))
+            }
 
-        // Кнопка "Статистика"
-        Button(
-            onClick = onStatsClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-        ) {
-            Text(text = "Статистика")
+            FilledTonalButton(
+                onClick = onSettingsClick,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.filledTonalButtonColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            ) {
+                Icon(Icons.Default.Settings, contentDescription = stringResource(R.string.settings))
+                Spacer(Modifier.width(8.dp))
+                Text(text = stringResource(R.string.settings))
+            }
+
+            FilledTonalButton(
+                onClick = onStatsClick,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.filledTonalButtonColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            ) {
+                Icon(
+                    ImageVector.vectorResource(R.drawable.leaderboard_24px),
+                    contentDescription = stringResource(R.string.stats))
+                Spacer(Modifier.width(8.dp))
+                Text(text = stringResource(R.string.stats))
+            }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MainScreenPreview() {
+    MemoryGameTheme(
+        dynamicColor = false
+    ) {
+        MainScreen(
+            onPlayClick = {},
+            onSettingsClick = {},
+            onStatsClick = {}
+        )
     }
 }

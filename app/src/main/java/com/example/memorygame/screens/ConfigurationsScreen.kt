@@ -15,52 +15,62 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.memorygame.R
+import com.example.memorygame.ui.theme.MemoryGameTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConfigurationScreen(
-    onConfigurationSelected: (Int) -> Unit // Обработчик выбора конфигурации
+    onConfigurationSelected: (Int) -> Unit
 ) {
-    val configurations = listOf(4, 6, 12, 24) // Фиксированные конфигурации
+    val configurations = listOf(4, 6, 12, 24)
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
     ) {
-        // Toolbar (замените на ваш кастомный Toolbar)
-        TopAppBar(
-            title = { Text("Выберите конфигурацию") },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Список конфигураций
-        LazyColumn(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+                .fillMaxSize()
+                .padding(24.dp)
         ) {
-            items(configurations) { numberOfCards ->
-                ConfigurationItem(
-                    text = "Играть с $numberOfCards карточками",
-                    onClick = { onConfigurationSelected(numberOfCards) }
-                )
+            // Заголовок
+            Text(
+                text = stringResource(R.string.configuration_title),
+                style = MaterialTheme.typography.headlineMedium,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(bottom = 24.dp)
+            )
+
+            // Список конфигураций
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(configurations) { numberOfCards ->
+                    ConfigurationItem(
+                        text = stringResource(R.string.play_with_cards, numberOfCards),
+                        onClick = { onConfigurationSelected(numberOfCards) }
+                    )
+                }
             }
         }
     }
@@ -71,17 +81,17 @@ fun ConfigurationItem(
     text: String,
     onClick: () -> Unit
 ) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+    FilledTonalButton(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth(),
+        colors = ButtonDefaults.filledTonalButtonColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+        ),
         shape = MaterialTheme.shapes.medium
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -90,16 +100,20 @@ fun ConfigurationItem(
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.weight(1f)
             )
-
-            IconButton(
-                onClick = onClick,
-                modifier = Modifier.size(24.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.KeyboardArrowRight,
-                    contentDescription = "Выбрать конфигурацию"
-                )
-            }
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowRight,
+                contentDescription = stringResource(R.string.select_configuration)
+            )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ConfigurationScreenPreview() {
+    MemoryGameTheme(dynamicColor = false) {
+        ConfigurationScreen(
+            onConfigurationSelected = {}
+        )
     }
 }

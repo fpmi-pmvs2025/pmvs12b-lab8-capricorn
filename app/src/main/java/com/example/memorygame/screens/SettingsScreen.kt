@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,39 +27,42 @@ fun SettingsScreen() {
             .padding(16.dp)
     ) {
         Text(
-            text = "Settings",
+            text = stringResource(R.string.settings_title),
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(bottom = 24.dp)
         )
 
         Column(
             modifier = Modifier.verticalScroll(rememberScrollState())
         ) {
-            SettingsCategory(title = "Appearance") {
+            SettingsCategory(title = stringResource(R.string.appearance_category)) {
                 ThemeSettingsCard()
                 Spacer(modifier = Modifier.height(12.dp))
             }
 
-            SettingsCategory(title = "Language") {
+            SettingsCategory(title = stringResource(R.string.language_category)) {
                 LanguageSettingsCard()
             }
         }
     }
 }
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LanguageSettingsCard() {
-    val options = listOf("English", "Russian")
+    val options = listOf(
+        stringResource(R.string.english),
+        stringResource(R.string.russian)
+    )
     var expanded by remember { mutableStateOf(false) }
     val textFieldState = rememberTextFieldState(options[0])
 
     SettingItem(
         icon = ImageVector.vectorResource(R.drawable.translate_24px),
-        title = "Language",
-        description = "Change app language"
+        title = stringResource(R.string.language_title),
+        description = stringResource(R.string.language_desc)
     ) {
         ExposedDropdownMenuBox(
             expanded = expanded,
@@ -71,7 +75,7 @@ fun LanguageSettingsCard() {
                 state = textFieldState,
                 readOnly = true,
                 lineLimits = TextFieldLineLimits.SingleLine,
-                label = { Text("Select language") },
+                label = { Text(stringResource(R.string.select_language)) },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 colors = ExposedDropdownMenuDefaults.textFieldColors(),
             )
@@ -100,8 +104,8 @@ fun ThemeSettingsCard() {
 
     SettingItem(
         icon = ImageVector.vectorResource(R.drawable.dark_mode_24px),
-        title = "Dark Theme",
-        description = "Enable dark mode"
+        title = stringResource(R.string.dark_theme_title),
+        description = stringResource(R.string.dark_theme_desc)
     ) {
         Switch(
             checked = darkThemeEnabled,
@@ -122,15 +126,15 @@ fun SettingItem(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .height(if (compact) 64.dp else 72.dp) // Компактная высота для языковой настройки
+            .height(if (compact) 64.dp else 72.dp)
     ) {
         Icon(
             imageVector = icon,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.primary,
             modifier = Modifier
-                .padding(end = 12.dp) // Уменьшенный отступ
-                .size(20.dp) // Уменьшенный размер иконки
+                .padding(end = 12.dp)
+                .size(20.dp)
         )
 
         Column(
@@ -138,18 +142,18 @@ fun SettingItem(
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.bodyMedium, // Меньший размер текста
+                style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Medium,
-                modifier = Modifier.padding(bottom = 2.dp) // Уменьшенный отступ
+                modifier = Modifier.padding(bottom = 2.dp)
             )
             Text(
                 text = description,
-                style = MaterialTheme.typography.labelSmall, // Меньший размер описания
+                style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
 
-        Spacer(modifier = Modifier.width(8.dp)) // Уменьшенный отступ
+        Spacer(modifier = Modifier.width(8.dp))
         content()
     }
 }
@@ -160,14 +164,14 @@ fun SettingsCategory(
     content: @Composable () -> Unit
 ) {
     Column(
-        modifier = Modifier.padding(bottom = 12.dp) // Уменьшенный отступ снизу
+        modifier = Modifier.padding(bottom = 12.dp)
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.titleSmall, // Меньший размер заголовка
+            style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(bottom = 6.dp) // Уменьшенный отступ
+            modifier = Modifier.padding(bottom = 6.dp)
         )
         Surface(
             shape = MaterialTheme.shapes.medium,
@@ -175,7 +179,7 @@ fun SettingsCategory(
             modifier = Modifier.fillMaxWidth()
         ) {
             Column(
-                modifier = Modifier.padding(vertical = 8.dp, horizontal = 12.dp) // Уменьшенные отступы
+                modifier = Modifier.padding(vertical = 8.dp, horizontal = 12.dp)
             ) {
                 content()
             }
