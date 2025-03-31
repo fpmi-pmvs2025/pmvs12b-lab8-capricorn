@@ -38,8 +38,8 @@ class GameRepository(
         val pairedCards = mutableListOf<CardData>()
         for (i in 0 until numberOfCards / 2) {
             val card = cards[i]
-            pairedCards.add(CardData(i * 2, card.value, card.image))
-            pairedCards.add(CardData(i * 2 + 1, card.value, card.image))
+            pairedCards.add(CardData(i * 2, card.image.hashCode().toString(), card.image))
+            pairedCards.add(CardData(i * 2 + 1, card.image.hashCode().toString(), card.image))
         }
 
         return pairedCards.shuffled()
