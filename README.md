@@ -16,4 +16,4 @@
 3. **UX/UI-Designer** Ладик Алина.
 4. **Software Engineer:** Ладик Алина.
 5. **DevOps & QA Engineer:** Шейнин Василий.
-6. **Technical Writer:** Романовец АЛексей.
+6. **Technical Writer:** Романовец Алексей.
