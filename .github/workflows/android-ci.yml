@@ -45,6 +45,14 @@ jobs:
       - name: Run lint checks
         run: ./gradlew lintDebug
 
+      - name: Upload lint reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-reports
+          path: |
+            app/build/reports/lint/
+            app/build/intermediates/lint_intermediate_text_report/
+
       - name: Run instrumented tests (Android 13)
         if: runner.os == 'Linux'
         uses: reactivecircus/android-emulator-runner@v2
