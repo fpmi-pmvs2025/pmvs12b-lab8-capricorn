@@ -1,4 +1,4 @@
-name: Android CI
+name: Android CI Pipeline
 
 on:
   push:
@@ -23,13 +23,15 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Setup emulator
-        uses: reactivecircus/android-emulator-runner@v2
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
         with:
-          api-level: 33
-          arch: x86_64
-          profile: Pixel 5
-          script: ./gradlew connectedCheck
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Make gradlew executable
         run: chmod +x gradlew
@@ -37,8 +39,32 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
+      - name: Run unit tests
+        run: ./gradlew test
+
+      - name: Run lint checks
+        run: ./gradlew lintDebug
+
+      - name: Run instrumented tests (Android 13)
+        if: runner.os == 'Linux'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          arch: x86_64
+          profile: Pixel 5
+          script: ./gradlew connectedCheck
+
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            app/build/reports/
+            build/reports/
