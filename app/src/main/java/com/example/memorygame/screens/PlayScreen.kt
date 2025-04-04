@@ -275,21 +275,21 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
             ) {
                 Text(
                     text = stringResource(R.string.attempts_label),
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.secondary,
                     fontSize = 14.sp,
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Center
                 )
                 Text(
                     text = stringResource(R.string.matched_pairs_label),
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.secondary,
                     fontSize = 14.sp,
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Center
                 )
                 Text(
                     text = stringResource(R.string.time_label),
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.secondary,
                     fontSize = 14.sp,
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Center
@@ -305,7 +305,7 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
             ) {
                 Text(
                     text = totalAttempts.toString(),
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.secondary,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier.weight(1f),
@@ -321,7 +321,7 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
                 )
                 Text(
                     text = duration,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.secondary,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier.weight(1f),

@@ -10,3 +10,5 @@ val White = Color(0xFFFDFCFF)
 val Dark = Color(0xFF000000)
 
 val LightBlue = Color(0xFFE6F0FF)
+
+val PersBlue = Color(116,66,200)

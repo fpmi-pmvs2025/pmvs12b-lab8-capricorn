@@ -1,16 +1,19 @@
 package com.example.memorygame.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.memorygame.PlayViewModel
 import com.example.memorygame.R
@@ -18,8 +21,8 @@ import com.example.memorygame.data.entity.Statistic
 import com.example.memorygame.ui.theme.MemoryGameTheme
 import com.example.memorygame.util.formatDate
 import com.example.memorygame.util.formatDuration
-import java.util.Date
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StatsScreen(
     onBackClick: () -> Unit,
@@ -27,39 +30,53 @@ fun StatsScreen(
 ) {
     val gameStatsList by viewModel.gameStatsList.collectAsState()
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        Column(
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.stats_title)) },
+                navigationIcon = {
+                    IconButton(onClick = onBackClick) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = stringResource(R.string.back)
+                        )
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
+        Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(24.dp)
+                .padding(innerPadding),
+            color = MaterialTheme.colorScheme.background
         ) {
-            // Заголовок
-            Text(
-                text = stringResource(R.string.stats_title),
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(bottom = 24.dp)
-            )
-
-            if (gameStatsList.isEmpty()) {
-                Text(
-                    text = stringResource(R.string.no_stats_data),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
-            } else {
-                gameStatsList.forEach { gameStats ->
-                    StatCard(
-                        startTime = formatDate(gameStats.startTime),
-                        duration = formatDuration(gameStats.duration),
-                        numberOfCards = gameStats.numberOfCards,
-                        attempts = gameStats.attempts
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(24.dp)
+            ) {
+                if (gameStatsList.isEmpty()) {
+                    Text(
+                        text = stringResource(R.string.no_stats_data),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                } else {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        items(gameStatsList) { gameStats ->
+                            StatCard(
+                                startTime = formatDate(gameStats.startTime),
+                                duration = formatDuration(gameStats.duration),
+                                numberOfCards = gameStats.numberOfCards,
+                                attempts = gameStats.attempts
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -75,7 +92,7 @@ fun StatCard(startTime: String, duration: String, numberOfCards: Int, attempts: 
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
-            contentColor = MaterialTheme.colorScheme.onBackground
+            contentColor = MaterialTheme.colorScheme.secondary
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {

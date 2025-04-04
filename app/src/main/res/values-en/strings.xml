@@ -32,4 +32,5 @@
     <string name="dark_theme">Dark</string>
     <string name="congratulations">Congratulations!</string>
     <string name="game_completed">You have completed the game!</string>
+    <string name="back">Back</string>
 </resources>

@@ -16,6 +16,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.memorygame.R
@@ -36,7 +37,7 @@ fun SettingsScreen(
         Text(
             text = stringResource(R.string.settings_title),
             style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Bold,
+            //fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(bottom = 24.dp)
         )
@@ -162,6 +163,7 @@ fun SettingsCategory(
             text = title,
             style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.SemiBold,
+            fontSize = 20.sp,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(bottom = 6.dp)
         )
