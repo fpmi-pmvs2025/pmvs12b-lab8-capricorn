@@ -109,7 +109,7 @@ fun PlayScreen(
                 title = {
                         Text(
                             text = stringResource(R.string.play_title),
-                            color = Color.Blue,
+                            color = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.fillMaxWidth()
                         )
                 },

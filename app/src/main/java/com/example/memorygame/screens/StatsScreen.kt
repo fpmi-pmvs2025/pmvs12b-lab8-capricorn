@@ -35,7 +35,7 @@ fun StatsScreen(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(R.string.stats_title),
-                    color = Color.Blue,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.fillMaxWidth()) },
                     navigationIcon = {
                     IconButton(onClick = onBackClick) {

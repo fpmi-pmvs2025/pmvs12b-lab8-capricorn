@@ -36,7 +36,7 @@ fun SettingsScreen(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(R.string.settings_title),
-                            color = Color.Blue,
+                            color = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.fillMaxWidth()) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
@@ -92,7 +92,6 @@ fun ThemeSettingsCard(
         ExposedDropdownMenuBox(
             expanded = expanded,
             onExpandedChange = { expanded = it },
-            modifier = Modifier.background(Color.Blue)
         ) {
             TextField(
                 modifier = Modifier
@@ -105,11 +104,11 @@ fun ThemeSettingsCard(
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant, // Синий фон при фокусе
                     unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant, // Синий фон без фокуса
-                    focusedTextColor = Color.Blue, // Белый текст при фокусе
-                    unfocusedTextColor = Color.Blue, // Белый текст без фокуса
-                    cursorColor = Color.Blue, // Белый курсор
-                    focusedIndicatorColor = Color.Blue, // Прозрачная линия индикатора
-                    unfocusedIndicatorColor = Color.Blue// Прозрачная линия индикатора
+                    focusedTextColor = MaterialTheme.colorScheme.primary, // Белый текст при фокусе
+                    unfocusedTextColor = MaterialTheme.colorScheme.primary, // Белый текст без фокуса
+                    cursorColor = MaterialTheme.colorScheme.primary, // Белый курсор
+                    focusedIndicatorColor = MaterialTheme.colorScheme.primary, // Прозрачная линия индикатора
+                    unfocusedIndicatorColor = MaterialTheme.colorScheme.primary// Прозрачная линия индикатора
                 ),
             )
             ExposedDropdownMenu(

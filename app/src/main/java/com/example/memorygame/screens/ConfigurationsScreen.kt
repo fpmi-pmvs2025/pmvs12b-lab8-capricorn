@@ -49,7 +49,7 @@ fun ConfigurationScreen(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(R.string.configuration_title),
-                    color = Color.Blue,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.fillMaxWidth()) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
