@@ -1,15 +1,16 @@
 package com.example.memorygame.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.input.TextFieldLineLimits
-import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -23,34 +24,47 @@ import com.example.memorygame.R
 import com.example.memorygame.SettingsViewModel
 import com.example.memorygame.ui.theme.MemoryGameTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
+    onBackClick: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
     val currentTheme by viewModel.themeMode.collectAsStateWithLifecycle()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Text(
-            text = stringResource(R.string.settings_title),
-            style = MaterialTheme.typography.headlineLarge,
-            //fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(bottom = 24.dp)
-        )
-
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.settings_title),
+                            color = Color.Blue,
+                            modifier = Modifier.fillMaxWidth()) },
+                navigationIcon = {
+                    IconButton(onClick = onBackClick) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = stringResource(R.string.back)
+                        )
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
         Column(
-            modifier = Modifier.verticalScroll(rememberScrollState())
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .padding(innerPadding)
         ) {
-            SettingsCategory(title = stringResource(R.string.appearance_category)) {
-                ThemeSettingsCard(
-                    currentTheme = currentTheme,
-                    onThemeChanged = viewModel::setThemeMode
-                )
-                Spacer(modifier = Modifier.height(12.dp))
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState())
+            ) {
+                SettingsCategory(title = stringResource(R.string.appearance_category)) {
+                    ThemeSettingsCard(
+                        currentTheme = currentTheme,
+                        onThemeChanged = viewModel::setThemeMode
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                }
             }
         }
     }
@@ -78,6 +92,7 @@ fun ThemeSettingsCard(
         ExposedDropdownMenuBox(
             expanded = expanded,
             onExpandedChange = { expanded = it },
+            modifier = Modifier.background(Color.Blue)
         ) {
             TextField(
                 modifier = Modifier
@@ -87,7 +102,15 @@ fun ThemeSettingsCard(
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                colors = ExposedDropdownMenuDefaults.textFieldColors(),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant, // Синий фон при фокусе
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant, // Синий фон без фокуса
+                    focusedTextColor = Color.Blue, // Белый текст при фокусе
+                    unfocusedTextColor = Color.Blue, // Белый текст без фокуса
+                    cursorColor = Color.Blue, // Белый курсор
+                    focusedIndicatorColor = Color.Blue, // Прозрачная линия индикатора
+                    unfocusedIndicatorColor = Color.Blue// Прозрачная линия индикатора
+                ),
             )
             ExposedDropdownMenu(
                 expanded = expanded,
@@ -191,7 +214,7 @@ fun SettingsPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            SettingsScreen()
+            SettingsScreen(onBackClick = {})
         }
     }
 }

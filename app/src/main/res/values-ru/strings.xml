@@ -33,6 +33,7 @@
     <string name="congratulations">Поздравляю!</string>
     <string name="game_completed">Вы завершили игру!</string>
     <string name="back">Назад</string>
+    <string name="play_title">Игровое поле</string>
     <plurals name="minutes" tools:ignore="MissingDefaultResource">
         <item quantity="one">%d минута</item>
         <item quantity="few">%d минуты</item>

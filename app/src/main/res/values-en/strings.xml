@@ -33,4 +33,5 @@
     <string name="congratulations">Congratulations!</string>
     <string name="game_completed">You have completed the game!</string>
     <string name="back">Back</string>
+    <string name="play_title">Play Space</string>
 </resources>

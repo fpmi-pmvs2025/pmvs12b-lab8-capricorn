@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -37,11 +38,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Date
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayScreen(
     numberOfCards: Int,
     onNewGameClick: () -> Unit,
-    onFabClick: () -> Unit,
+    onBackClick: () -> Unit,
     viewModel: PlayViewModel = hiltViewModel()
 ) {
     val scope = rememberCoroutineScope()
@@ -101,68 +103,91 @@ fun PlayScreen(
         )
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        if (isLoading.value) {
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center)
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                        Text(
+                            text = stringResource(R.string.play_title),
+                            color = Color.Blue,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                },
+                navigationIcon = {
+                    IconButton(onClick = onBackClick) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = stringResource(R.string.back)
+                        )
+                    }
+                }
             )
-        } else {
-            Column(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                val duration = System.currentTimeMillis() - startTime.value.time
-
-                StatCard(
-                    duration = formatDuration(duration),
-                    matchedPairs = matchedPairs.value,
-                    totalAttempts = totalFlips.value
+        }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .padding(innerPadding)
+        ) {
+            if (isLoading.value) {
+                CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.Center)
                 )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(columns),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f),
-                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+            } else {
+                Column(
+                    modifier = Modifier.fillMaxSize()
                 ) {
-                    items(cards) { card ->
-                        FlipCard(
-                            card = card,
-                            isMatched = matchedCards.contains(card.id),
-                            isOpened = openedCards.contains(card.id),
-                            isRotated = rotatedCards[card.id] ?: false,
-                            onClick = {
-                                if (openedCards.size < 2 && !openedCards.contains(card.id) && !matchedCards.contains(card.id)) {
-                                    totalFlips.value++
-                                    rotatedCards[card.id] = true
-                                    openedCards.add(card.id)
+                    val duration = System.currentTimeMillis() - startTime.value.time
 
-                                    if (openedCards.size == 2) {
-                                        scope.launch {
-                                            delay(1000)
-                                            val firstCard = cards.find { it.id == openedCards[0] }
-                                            val secondCard = cards.find { it.id == openedCards[1] }
+                    StatCard(
+                        duration = formatDuration(duration),
+                        matchedPairs = matchedPairs.value,
+                        totalAttempts = totalFlips.value
+                    )
 
-                                            if (firstCard?.value == secondCard?.value) {
-                                                matchedCards.addAll(openedCards)
-                                                matchedPairs.value++
-                                            } else {
-                                                openedCards.forEach { rotatedCards[it] = false }
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    LazyVerticalGrid(
+                        columns = GridCells.Fixed(columns),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1f),
+                        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        items(cards) { card ->
+                            FlipCard(
+                                card = card,
+                                isMatched = matchedCards.contains(card.id),
+                                isOpened = openedCards.contains(card.id),
+                                isRotated = rotatedCards[card.id] ?: false,
+                                onClick = {
+                                    if (openedCards.size < 2 && !openedCards.contains(card.id) && !matchedCards.contains(card.id)) {
+                                        totalFlips.value++
+                                        rotatedCards[card.id] = true
+                                        openedCards.add(card.id)
+
+                                        if (openedCards.size == 2) {
+                                            scope.launch {
+                                                delay(1000)
+                                                val firstCard = cards.find { it.id == openedCards[0] }
+                                                val secondCard = cards.find { it.id == openedCards[1] }
+
+                                                if (firstCard?.value == secondCard?.value) {
+                                                    matchedCards.addAll(openedCards)
+                                                    matchedPairs.value++
+                                                } else {
+                                                    openedCards.forEach { rotatedCards[it] = false }
+                                                }
+                                                openedCards.clear()
                                             }
-                                            openedCards.clear()
                                         }
                                     }
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
                 }
             }

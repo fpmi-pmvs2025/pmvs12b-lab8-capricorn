@@ -11,4 +11,4 @@ val Dark = Color(0xFF000000)
 
 val LightBlue = Color(0xFFE6F0FF)
 
-val PersBlue = Color(116,66,200)
+val PersBlue = Color(0,153,0)

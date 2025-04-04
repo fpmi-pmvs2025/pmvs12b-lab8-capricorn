@@ -41,10 +41,13 @@ fun MyApp() {
 
         // Экран конфигураций
         composable("configuration") {
-            ConfigurationScreen { numberOfCards ->
-                // Переход на PlayScreen с аргументом
-                navController.navigate("play/$numberOfCards")
-            }
+            ConfigurationScreen(
+                onConfigurationSelected = { numberOfCards ->
+                    // Переход на PlayScreen с аргументом
+                    navController.navigate("play/$numberOfCards")
+                },
+                onBackClick = { navController.popBackStack() }
+            )
         }
 
         // Экран игры
@@ -56,18 +59,15 @@ fun MyApp() {
             PlayScreen(
                 numberOfCards = numberOfCards,
                 onNewGameClick = {
-                    // Возврат на экран конфигураций
                     navController.navigate("configuration")
                 },
-                onFabClick = {
-                    // Дополнительные действия
-                }
+                onBackClick = { navController.popBackStack() }
             )
         }
 
         // Экран настроек
         composable("settings") {
-            SettingsScreen()
+            SettingsScreen(onBackClick = { navController.popBackStack() })
         }
 
         // Экран статистики

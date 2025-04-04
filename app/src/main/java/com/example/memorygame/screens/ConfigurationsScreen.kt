@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -23,53 +23,69 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.memorygame.R
 import com.example.memorygame.ui.theme.MemoryGameTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConfigurationScreen(
-    onConfigurationSelected: (Int) -> Unit
+    onConfigurationSelected: (Int) -> Unit,
+    onBackClick: () -> Unit
 ) {
     val configurations = listOf(4, 6, 12, 24)
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        Column(
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.configuration_title),
+                    color = Color.Blue,
+                    modifier = Modifier.fillMaxWidth()) },
+                navigationIcon = {
+                    IconButton(onClick = onBackClick) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = stringResource(R.string.back)
+                        )
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
+        Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(24.dp)
+                .padding(innerPadding),
+            color = MaterialTheme.colorScheme.background
         ) {
-            // Заголовок
-            Text(
-                text = stringResource(R.string.configuration_title),
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(bottom = 24.dp)
-            )
-
-            // Список конфигураций
-            LazyColumn(
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                    .fillMaxSize()
+                    .padding(24.dp)
             ) {
-                items(configurations) { numberOfCards ->
-                    ConfigurationItem(
-                        text = stringResource(R.string.play_with_cards, numberOfCards),
-                        onClick = { onConfigurationSelected(numberOfCards) }
-                    )
+                // Список конфигураций
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(configurations) { numberOfCards ->
+                        ConfigurationItem(
+                            text = stringResource(R.string.play_with_cards, numberOfCards),
+                            onClick = { onConfigurationSelected(numberOfCards) }
+                        )
+                    }
                 }
             }
         }
@@ -113,7 +129,8 @@ fun ConfigurationItem(
 fun ConfigurationScreenPreview() {
     MemoryGameTheme(dynamicColor = false) {
         ConfigurationScreen(
-            onConfigurationSelected = {}
+            onConfigurationSelected = {},
+            onBackClick = {}
         )
     }
 }*/
