@@ -2,9 +2,14 @@ name: Android CI Pipeline
 
 on:
   push:
-    branches: [ main, master, dev, dev-tests ]
+    branches: [ main, master, dev, dev-tools ]
   pull_request:
-    branches: [ main, master, dev, dev-tests ]
+    branches: [ main, master, dev, dev-tools ]
+
+env:
+  CI: true
+  ANDROID_SDK_ROOT: ${{ github.workspace }}/android-sdk
+  GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2
 
 jobs:
   build-and-test:
@@ -22,6 +27,29 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          licenses: true
+
+      - name: Install Android tools
+        run: |
+          yes | sdkmanager --update
+          yes | sdkmanager --install 'build-tools;34.0.0' 'platform-tools' 'platforms;android-34' 'cmdline-tools;latest'
+          yes | sdkmanager --install 'emulator' --channel=0
+          yes | sdkmanager --install 'system-images;android-34;google_apis;x86_64' --channel=0
+
+      - name: Create AVD
+        run: |
+          echo "no" | avdmanager create avd \
+            --force \
+            --name test \
+            --package "system-images;android-34;google_apis;x86_64" \
+            --abi "google_apis/x86_64" \
+            --device "pixel_5"
+
+      - name: Start emulator
+        run: |
+          $ANDROID_HOME/emulator/emulator -avd test -no-window -no-audio -no-snapshot -gpu swiftshader_indirect &
+          $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
@@ -45,22 +73,8 @@ jobs:
       - name: Run lint checks
         run: ./gradlew lintDebug
 
-      - name: Upload lint reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: lint-reports
-          path: |
-            app/build/reports/lint/
-            app/build/intermediates/lint_intermediate_text_report/
-
-      - name: Run instrumented tests (Android 13)
-        if: runner.os == 'Linux'
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 33
-          arch: x86_64
-          profile: Pixel 5
-          script: ./gradlew connectedCheck
+      - name: Run instrumented tests
+        run: ./gradlew connectedCheck
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
