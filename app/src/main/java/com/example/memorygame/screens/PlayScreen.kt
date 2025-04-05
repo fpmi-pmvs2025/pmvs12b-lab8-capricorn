@@ -1,5 +1,6 @@
 package com.example.memorygame.screens
 
+import android.content.pm.ActivityInfo
 import android.widget.ImageView
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.animateFloatAsState
@@ -19,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -33,6 +35,7 @@ import com.example.memorygame.ui.theme.MemoryGameTheme
 import com.example.memorygame.PlayViewModel
 import com.example.memorygame.R
 import com.example.memorygame.data.entity.Statistic
+import com.example.memorygame.util.findActivity
 import com.example.memorygame.util.formatDuration
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -46,6 +49,18 @@ fun PlayScreen(
     onBackClick: () -> Unit,
     viewModel: PlayViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
+    val activity = context.findActivity()
+
+    DisposableEffect(Unit) {
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        onDispose {
+            activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        }
+    }
+
+
     val scope = rememberCoroutineScope()
     val cards by viewModel.cards.collectAsState()
     val openedCards = remember { mutableStateListOf<Int>() }

@@ -1,5 +1,8 @@
 package com.example.memorygame.util
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.example.memorygame.R
@@ -25,4 +28,10 @@ fun formatDuration(duration: Long): String {
         minutes,
         seconds
     )
+}
+
+fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
 }
