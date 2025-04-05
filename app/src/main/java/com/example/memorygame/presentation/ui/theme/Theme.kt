@@ -18,13 +18,13 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Nebo,
-    primaryContainer = Nebo,
+    primary = SkyBlue,
+    primaryContainer = SkyBlue,
     onPrimaryContainer = White,
     onBackground = Dark,
     surfaceVariant = LightBlue,
     secondary = Dark,
-    tertiary = PersBlue
+    tertiary = Green
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -34,13 +34,12 @@ private val LightColorScheme = lightColorScheme(
     onBackground = White,
     surfaceVariant = LightBlue,
     secondary = Dark,
-    tertiary = PersBlue
+    tertiary = Green
 )
 
 @Composable
 fun MemoryGameTheme(
     darkTheme: Boolean,
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {

@@ -73,7 +73,6 @@ fun ConfigurationScreen(
                     .fillMaxSize()
                     .padding(24.dp)
             ) {
-                // Список конфигураций
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -123,14 +122,3 @@ fun ConfigurationItem(
         }
     }
 }
-
-/*@Preview(showBackground = true)
-@Composable
-fun ConfigurationScreenPreview() {
-    MemoryGameTheme(dynamicColor = false) {
-        ConfigurationScreen(
-            onConfigurationSelected = {},
-            onBackClick = {}
-        )
-    }
-}*/

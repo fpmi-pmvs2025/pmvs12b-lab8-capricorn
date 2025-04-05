@@ -7,17 +7,21 @@ import java.util.Date
 
 @Entity(tableName = "statistics")
 data class Statistic(
+    // Duration of the game in milliseconds
     @ColumnInfo(name = "duration")
-    var duration: Long, // Длительность игры в миллисекундах
+    var duration: Long,
 
+    // Game start time
     @ColumnInfo(name = "start_time")
-    var startTime: Date, // Время начала игры
+    var startTime: Date,
 
+    // Number of cards
     @ColumnInfo(name = "number_of_cards")
-    var numberOfCards: Int, // Количество карт
+    var numberOfCards: Int,
 
+    // Number of attempts
     @ColumnInfo(name = "attempts")
-    var attempts: Int // Количество попыток
+    var attempts: Int
 ) {
     @PrimaryKey(autoGenerate = true)
     var id:Int? = null

@@ -100,13 +100,13 @@ fun ThemeSettingsCard(
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant, // Синий фон при фокусе
-                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant, // Синий фон без фокуса
-                    focusedTextColor = MaterialTheme.colorScheme.primary, // Белый текст при фокусе
-                    unfocusedTextColor = MaterialTheme.colorScheme.primary, // Белый текст без фокуса
-                    cursorColor = MaterialTheme.colorScheme.primary, // Белый курсор
-                    focusedIndicatorColor = MaterialTheme.colorScheme.primary, // Прозрачная линия индикатора
-                    unfocusedIndicatorColor = MaterialTheme.colorScheme.primary// Прозрачная линия индикатора
+                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    focusedTextColor = MaterialTheme.colorScheme.primary,
+                    unfocusedTextColor = MaterialTheme.colorScheme.primary,
+                    cursorColor = MaterialTheme.colorScheme.primary,
+                    focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+                    unfocusedIndicatorColor = MaterialTheme.colorScheme.primary
                 ),
             )
             ExposedDropdownMenu(

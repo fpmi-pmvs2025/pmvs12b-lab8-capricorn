@@ -13,7 +13,6 @@ class GameRepository(
 
 ) {
     suspend fun upset(item: Statistic) = db.getGameDao().upsert(item)
-    suspend fun delete(item: Statistic) = db.getGameDao().delete(item)
     suspend fun getAllStatistics(): List<Statistic> {
         return db.getGameDao().getAllStatistics()
     }

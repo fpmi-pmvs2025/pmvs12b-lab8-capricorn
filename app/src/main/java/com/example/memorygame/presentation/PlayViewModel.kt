@@ -23,7 +23,6 @@ class PlayViewModel @Inject constructor(
     val gameStatsList: StateFlow<List<Statistic>> = _gameStatsList.asStateFlow()
 
     private val _errorMessage = MutableStateFlow<String?>(null)
-    val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
 
     init {
         fetchGameStats()
@@ -43,7 +42,7 @@ class PlayViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _cards.value = repository.getCardsForGame(numberOfCards)
-                _errorMessage.value = null // Clear previous errors if successful
+                _errorMessage.value = null
             } catch (e: Exception) {
                 _errorMessage.value = "Failed to load cards: ${e.message}"
                 _cards.value = emptyList()
@@ -60,9 +59,5 @@ class PlayViewModel @Inject constructor(
                 _errorMessage.value = "Failed to save game result: ${e.message}"
             }
         }
-    }
-
-    fun clearErrorMessage() {
-        _errorMessage.value = null
     }
 }

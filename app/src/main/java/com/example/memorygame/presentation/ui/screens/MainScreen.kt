@@ -46,15 +46,12 @@ fun MainScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Заголовок
             Text(
                 text = stringResource(R.string.game_title),
                 style = MaterialTheme.typography.displaySmall,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(bottom = 32.dp)
             )
-
-            // Кнопки с иконками
             FilledTonalButton(
                 onClick = onPlayClick,
                 modifier = Modifier.fillMaxWidth(),
@@ -98,17 +95,3 @@ fun MainScreen(
         }
     }
 }
-
-/*@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview() {
-    MemoryGameTheme(
-        dynamicColor = false
-    ) {
-        MainScreen(
-            onPlayClick = {},
-            onSettingsClick = {},
-            onStatsClick = {}
-        )
-    }
-}*/

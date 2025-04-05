@@ -29,6 +29,6 @@ class ThemeManager @Inject constructor(
 
     val themeMode: Flow<String> = context.dataStore.data
         .map { preferences ->
-            preferences[THEME_MODE] ?: "light" // По умолчанию светлая тема
+            preferences[THEME_MODE] ?: "light"
         }
 }

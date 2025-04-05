@@ -67,12 +67,12 @@ fun PlayScreen(
     val isGameCompleted = matchedPairs.value == numberOfCards / 2
     val showCompletionDialog = remember { mutableStateOf(false) }
 
-    // Определяем количество колонок в зависимости от количества карт
     val columns = when {
-        numberOfCards <= 6 -> 2
-        numberOfCards <= 12 -> 3
-        numberOfCards <= 20 -> 4
-        else -> 5
+        numberOfCards == 4 -> 2
+        numberOfCards == 6 -> 3
+        numberOfCards == 12 -> 3
+        numberOfCards == 24 -> 4
+        else -> 4
     }
 
     LaunchedEffect(Unit) {
@@ -255,7 +255,6 @@ fun FlipCard(
             }
         }
 
-        // Лицевая сторона карточки
         if (rotation > 90f) {
             Box(
                 modifier = Modifier
@@ -302,7 +301,6 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Строка с подписями
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -332,7 +330,6 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // Строка со значениями
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -371,17 +368,3 @@ data class CardData(
     val value: String,
     val image: String
 )
-
-/*@Preview(showBackground = true)
-@Composable
-fun PlayPreview() {
-    MemoryGameTheme(
-        dynamicColor = false
-    ) {
-        PlayScreen(
-            12,
-            onNewGameClick = {},
-            onFabClick = {}
-        )
-    }
-}*/

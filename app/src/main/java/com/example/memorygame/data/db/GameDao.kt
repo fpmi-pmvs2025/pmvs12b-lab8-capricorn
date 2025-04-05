@@ -12,8 +12,6 @@ import com.example.memorygame.data.entity.Statistic
 interface GameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(item : Statistic)
-    @Delete
-    suspend fun delete(item: Statistic)
     @Query("SELECT * FROM statistics")
     suspend fun getAllStatistics(): List<Statistic>
 }

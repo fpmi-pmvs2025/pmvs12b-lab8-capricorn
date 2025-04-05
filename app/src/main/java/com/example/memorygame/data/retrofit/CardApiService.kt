@@ -15,7 +15,7 @@ interface CardApiService {
     @GET("{deckId}/draw/")
     suspend fun getCards(
         @Path("deckId") deckId: String,
-        @Query("count") count: Int // Number of cards to draw
+        @Query("count") count: Int
     ): Response<Cards>
 }
 
