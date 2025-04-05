@@ -1,4 +1,4 @@
-package com.example.memorygame.ui.theme
+package com.example.memorygame.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

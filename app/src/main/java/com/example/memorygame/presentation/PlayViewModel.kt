@@ -1,10 +1,10 @@
-package com.example.memorygame
+package com.example.memorygame.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.memorygame.data.entity.Statistic
 import com.example.memorygame.domain.GameRepository
-import com.example.memorygame.screens.CardData
+import com.example.memorygame.presentation.ui.screens.CardData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

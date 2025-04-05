@@ -1,4 +1,4 @@
-package com.example.memorygame.screens
+package com.example.memorygame.presentation.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,15 +11,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.memorygame.PlayViewModel
+import com.example.memorygame.presentation.PlayViewModel
 import com.example.memorygame.R
-import com.example.memorygame.data.entity.Statistic
-import com.example.memorygame.ui.theme.MemoryGameTheme
 import com.example.memorygame.util.formatDate
 import com.example.memorygame.util.formatDuration
 

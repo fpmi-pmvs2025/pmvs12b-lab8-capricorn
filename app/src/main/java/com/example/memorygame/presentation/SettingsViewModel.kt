@@ -1,4 +1,4 @@
-package com.example.memorygame
+package com.example.memorygame.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

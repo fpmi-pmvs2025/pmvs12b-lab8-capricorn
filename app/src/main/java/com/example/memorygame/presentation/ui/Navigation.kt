@@ -1,4 +1,4 @@
-package com.example.memorygame
+package com.example.memorygame.presentation.ui
 
 
 import androidx.navigation.compose.NavHost
@@ -7,11 +7,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.example.memorygame.screens.ConfigurationScreen
-import com.example.memorygame.screens.MainScreen
-import com.example.memorygame.screens.PlayScreen
-import com.example.memorygame.screens.SettingsScreen
-import com.example.memorygame.screens.StatsScreen
+import com.example.memorygame.presentation.ui.screens.ConfigurationScreen
+import com.example.memorygame.presentation.ui.screens.MainScreen
+import com.example.memorygame.presentation.ui.screens.PlayScreen
+import com.example.memorygame.presentation.ui.screens.SettingsScreen
+import com.example.memorygame.presentation.ui.screens.StatsScreen
 
 @Composable
 fun MyApp() {

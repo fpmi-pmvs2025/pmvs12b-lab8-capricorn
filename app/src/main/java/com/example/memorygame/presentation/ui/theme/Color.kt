@@ -1,4 +1,4 @@
-package com.example.memorygame.ui.theme
+package com.example.memorygame.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

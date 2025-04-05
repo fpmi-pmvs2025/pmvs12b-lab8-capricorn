@@ -1,4 +1,4 @@
-package com.example.memorygame.screens
+package com.example.memorygame.presentation.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,7 +26,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.memorygame.R
-import com.example.memorygame.ui.theme.MemoryGameTheme
+import com.example.memorygame.presentation.ui.theme.MemoryGameTheme
 
 @Composable
 fun MainScreen(

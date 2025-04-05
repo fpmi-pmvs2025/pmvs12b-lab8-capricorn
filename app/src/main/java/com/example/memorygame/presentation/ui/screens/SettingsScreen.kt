@@ -1,6 +1,5 @@
-package com.example.memorygame.screens
+package com.example.memorygame.presentation.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -10,7 +9,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -21,8 +19,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.memorygame.R
-import com.example.memorygame.SettingsViewModel
-import com.example.memorygame.ui.theme.MemoryGameTheme
+import com.example.memorygame.presentation.SettingsViewModel
+import com.example.memorygame.presentation.ui.theme.MemoryGameTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
