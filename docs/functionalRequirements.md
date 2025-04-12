@@ -15,8 +15,4 @@
 #### Приложение должно выполнять следующие функции:
 
 # Диаграмма вариантов использования
-![use_case](https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/5cf92142b8b793dd6408e8dc3335ca8f5aa26e16/img/diagrams/useCase.jpeg?raw=true)
-
-# Сценарий для пользователя:
-
-  
+![use_case](https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/doc/imgs/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-04-12%20233541.png)
