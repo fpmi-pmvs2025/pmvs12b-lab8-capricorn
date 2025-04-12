@@ -33,21 +33,14 @@
 # Диаграммы UML
 
 ## Диаграмма вариантов использования
-![use_case](https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/5cf92142b8b793dd6408e8dc3335ca8f5aa26e16/img/diagrams/useCase.jpeg?raw=true)
+![use_case](https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/doc/imgs/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-04-12%20233541.png)
 
 ## Диаграмма классов
 ![class](https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/4dbf94b7958bfa4581b11ee9677aee3330fed899/img/diagrams/classImg.jpeg?raw=true)
 
 ## Физическая модель базы данных
-![Data base schema](https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/c6be41019be8de8aa56a439e9781663bf313a9bb/img/diagrams/db.png?raw=true)
+![Data base schema](https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/doc/imgs/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-04-12%20222932.png)
+
 ## Диаграмма файлов
-![Files schema](https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/1dde058573206e2963f07c2549f973077fc4a722/img/diagrams/files.jpeg?raw=true)
-
-## Диаграмма компонентов
-![Component schema](https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/d6839e02f8bc6f0a5c776e4280449d8593e7dd4a/img/diagrams/componentFoodie.jpeg?raw=true)
-
-## Диаграмма последовательности
-![Sequence schema](https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/d6839e02f8bc6f0a5c776e4280449d8593e7dd4a/img/diagrams/sequenceFoodie.jpeg?raw=true)
-
-## Диаграмма развёртывания
-![Deployment schema](https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/d6839e02f8bc6f0a5c776e4280449d8593e7dd4a/img/diagrams/foodiedeployment.jpeg?raw=true)
+![Files schema1](https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/doc/imgs/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-04-12%20230059.png)
+![Files schema2](https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/doc/imgs/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-04-12%20230121.png)
