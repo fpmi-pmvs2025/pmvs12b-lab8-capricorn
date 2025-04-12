@@ -7,25 +7,25 @@
 <table>
   <tr>
     <td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080756.png?raw=true" width="200" style="display: inline" /></td>
-    <td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075800.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075825.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075859.png" width="200" style="display: inline" /></td>
+    <td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075800.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075825.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075859.png?raw=true" width="200" style="display: inline" /></td>
 
 
   </tr>
   <tr>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075847.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075917.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075928.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080654.png" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075847.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075917.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075928.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080654.png?raw=true" width="200" style="display: inline" /></td>
 
 
   </tr>
 
   <tr>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080002.png"  width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080708.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075941.png" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080002.png?raw=true"  width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080708.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075941.png?raw=true" width="200" style="display: inline" /></td>
 
   </tr>
 
@@ -36,17 +36,17 @@ ___
 
 <table>
   <tr>
-    <td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080028.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080047.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080056.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080109.png" width="200" style="display: inline" /></td>
+    <td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080028.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080047.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080056.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080109.png?raw=true" width="200" style="display: inline" /></td>
 
 
 
   </tr>
   <tr>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080119.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080729.png" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080119.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080729.png?raw=true" width="200" style="display: inline" /></td>
   </tr>
 </table>
 
@@ -54,16 +54,16 @@ ___
 
 <table>
   <tr>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080254.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080326.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080338.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080431.png" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080254.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080326.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080338.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080431.png?raw=true" width="200" style="display: inline" /></td>
 
 
   </tr>
   <tr>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080403.png" width="200" style="display: inline" /></td>
-<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080352.png" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080403.png?raw=true" width="200" style="display: inline" /></td>
+<td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080352.png?raw=true" width="200" style="display: inline" /></td>
   </tr>
 </table>
 
