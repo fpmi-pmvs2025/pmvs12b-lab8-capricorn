@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -106,6 +107,7 @@ fun PlayScreen(
     Scaffold(
         topBar = {
             TopAppBar(
+                modifier = Modifier.testTag("play_screen_top_bar"),
                 title = {
                         Text(
                             text = stringResource(R.string.play_title),
@@ -114,7 +116,10 @@ fun PlayScreen(
                         )
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBackClick) {
+                    IconButton(
+                        onClick = onBackClick,
+                        modifier = Modifier.testTag("play_screen_back_button")
+                    ) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = stringResource(R.string.back)
@@ -143,7 +148,8 @@ fun PlayScreen(
                     StatCard(
                         duration = formatDuration(duration),
                         matchedPairs = matchedPairs.value,
-                        totalAttempts = totalFlips.value
+                        totalAttempts = totalFlips.value,
+                        modifier = Modifier.testTag("stat_card")
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -159,6 +165,7 @@ fun PlayScreen(
                     ) {
                         items(cards) { card ->
                             FlipCard(
+                                modifier = Modifier.testTag("card_${card.id}"),
                                 card = card,
                                 isMatched = matchedCards.contains(card.id),
                                 isOpened = openedCards.contains(card.id),
@@ -185,7 +192,7 @@ fun PlayScreen(
                                             }
                                         }
                                     }
-                                }
+                                },
                             )
                         }
                     }
@@ -201,7 +208,8 @@ fun FlipCard(
     isMatched: Boolean,
     isOpened: Boolean,
     isRotated: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier
 ) {
     val rotation by animateFloatAsState(
         targetValue = if (isRotated) 180f else 0f,
@@ -209,7 +217,7 @@ fun FlipCard(
     )
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .aspectRatio(0.7f)
             .graphicsLayer {
@@ -275,9 +283,9 @@ fun FlipCard(
 }
 
 @Composable
-fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
+fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int, modifier: Modifier = Modifier) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(8.dp),
         shape = RoundedCornerShape(10.dp),

@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -34,6 +35,7 @@ fun StatsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
+                modifier = Modifier.testTag("stats_top_bar"),
                 title = { Text(stringResource(R.string.stats_title),
                     color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.fillMaxWidth()) },
@@ -76,7 +78,8 @@ fun StatsScreen(
                                 startTime = formatDate(gameStats.startTime),
                                 duration = formatDuration(gameStats.duration),
                                 numberOfCards = gameStats.numberOfCards,
-                                attempts = gameStats.attempts
+                                attempts = gameStats.attempts,
+                                modifier = Modifier.testTag("stat_item_${gameStats.startTime.time}")
                             )
                         }
                     }
@@ -87,9 +90,9 @@ fun StatsScreen(
 }
 
 @Composable
-fun StatCard(startTime: String, duration: String, numberOfCards: Int, attempts: Int) {
+fun StatCard(startTime: String, duration: String, numberOfCards: Int, attempts: Int, modifier: Modifier) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         shape = MaterialTheme.shapes.medium,

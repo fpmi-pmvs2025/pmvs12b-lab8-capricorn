@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,6 +36,7 @@ fun SettingsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
+                modifier = Modifier.testTag("settings_top_bar"),
                 title = { Text(stringResource(R.string.settings_title),
                             color = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.fillMaxWidth()) },
@@ -61,7 +63,8 @@ fun SettingsScreen(
                 SettingsCategory(title = stringResource(R.string.appearance_category)) {
                     ThemeSettingsCard(
                         currentTheme = currentTheme,
-                        onThemeChanged = viewModel::setThemeMode
+                        onThemeChanged = viewModel::setThemeMode,
+                        modifier = Modifier.testTag("theme_settings_card")
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                 }
@@ -74,7 +77,8 @@ fun SettingsScreen(
 @Composable
 fun ThemeSettingsCard(
     currentTheme: String,
-    onThemeChanged: (String) -> Unit
+    onThemeChanged: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val themeOptions = listOf(
         "light" to stringResource(R.string.light_theme),
@@ -82,7 +86,8 @@ fun ThemeSettingsCard(
     )
 
     var expanded by remember { mutableStateOf(false) }
-    val currentThemeName = themeOptions.firstOrNull { it.first == currentTheme }?.second ?: stringResource(R.string.light_theme)
+    val currentThemeName = themeOptions.firstOrNull { it.first == currentTheme }?.second
+        ?: stringResource(R.string.light_theme)
 
     SettingItem(
         icon = ImageVector.vectorResource(R.drawable.dark_mode_24px),
@@ -90,33 +95,37 @@ fun ThemeSettingsCard(
         description = stringResource(R.string.dark_theme_desc)
     ) {
         ExposedDropdownMenuBox(
+            modifier = modifier.testTag("theme_dropdown"),
             expanded = expanded,
             onExpandedChange = { expanded = it },
         ) {
             TextField(
                 modifier = Modifier
                     .menuAnchor()
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .testTag("theme_selector"),
                 value = currentThemeName,
                 onValueChange = {},
                 readOnly = true,
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 colors = TextFieldDefaults.colors(
-                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant, // Синий фон при фокусе
-                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant, // Синий фон без фокуса
-                    focusedTextColor = MaterialTheme.colorScheme.primary, // Белый текст при фокусе
-                    unfocusedTextColor = MaterialTheme.colorScheme.primary, // Белый текст без фокуса
-                    cursorColor = MaterialTheme.colorScheme.primary, // Белый курсор
-                    focusedIndicatorColor = MaterialTheme.colorScheme.primary, // Прозрачная линия индикатора
-                    unfocusedIndicatorColor = MaterialTheme.colorScheme.primary// Прозрачная линия индикатора
+                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    focusedTextColor = MaterialTheme.colorScheme.primary,
+                    unfocusedTextColor = MaterialTheme.colorScheme.primary,
+                    cursorColor = MaterialTheme.colorScheme.primary,
+                    focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+                    unfocusedIndicatorColor = MaterialTheme.colorScheme.primary
                 ),
             )
             ExposedDropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
+                modifier = Modifier.testTag("theme_menu")
             ) {
                 themeOptions.forEach { (key, value) ->
                     DropdownMenuItem(
+                        modifier = Modifier.testTag("theme_option_$key"),
                         text = { Text(value) },
                         onClick = {
                             onThemeChanged(key)
