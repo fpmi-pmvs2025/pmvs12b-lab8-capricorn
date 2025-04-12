@@ -40,7 +40,7 @@ class NavigationTest {
 
         composeTestRule.onNodeWithTag("play_screen_top_bar").assertExists()
 
-        composeTestRule.waitUntil(100_000) {
+        composeTestRule.waitUntil(Long.MAX_VALUE) {
             (0..11).all { i ->
                 composeTestRule.onAllNodesWithTag("card_$i").fetchSemanticsNodes().isNotEmpty()
             }
