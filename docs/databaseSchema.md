@@ -10,8 +10,4 @@
 
 # Схема базы данных
 
-![Data base schema](https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/c6be41019be8de8aa56a439e9781663bf313a9bb/img/diagrams/db.png?raw=true)
-
-Ссылка на sql-файл: 
-
-[https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/b961ed1608f04949f3236bd371fb1b21a33f983a/Foodie/Models/FoodieDB/FoodieDB_structure.sql](https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/b961ed1608f04949f3236bd371fb1b21a33f983a/Foodie/Models/FoodieDB/FoodieDB_structure.sql)
+![Data base schema]([https://github.com/fpmi-tp2024/tpmp-rvn-lab10-libra/blob/c6be41019be8de8aa56a439e9781663bf313a9bb/img/diagrams/db.png?raw=true](https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/doc/imgs/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-04-12%20222932.png))
