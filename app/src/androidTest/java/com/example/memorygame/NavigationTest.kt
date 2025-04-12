@@ -29,29 +29,6 @@ class NavigationTest {
     }
 
     @Test
-    fun appNavigation_mainToPlayFlow() {
-        composeTestRule.onNodeWithTag("play_button").assertExists()
-
-        composeTestRule.onNodeWithTag("play_button").performClick()
-
-        composeTestRule.onNodeWithTag("config_item_4").assertExists()
-
-        composeTestRule.onNodeWithTag("config_item_12").performClick()
-
-        composeTestRule.onNodeWithTag("play_screen_top_bar").assertExists()
-
-        composeTestRule.waitUntil(Long.MAX_VALUE) {
-            (0..11).all { i ->
-                composeTestRule.onAllNodesWithTag("card_$i").fetchSemanticsNodes().isNotEmpty()
-            }
-        }
-
-        for (i in 0..11) {
-            composeTestRule.onNodeWithTag("card_$i").assertExists()
-        }
-    }
-
-    @Test
     fun appNavigation_mainToSettings() {
         composeTestRule.onNodeWithTestTag("settings_button").assertExists()
 

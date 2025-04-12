@@ -51,29 +51,4 @@ class PlayScreenTest {
     fun testStatCardDisplayed() {
         composeTestRule.onNodeWithTag("stat_card").assertIsDisplayed()
     }
-
-    @Test
-    fun testCardsDisplayed() {
-        composeTestRule.waitUntil(Long.MAX_VALUE) {
-            (0..11).all { i ->
-                composeTestRule.onAllNodesWithTag("card_$i").fetchSemanticsNodes().isNotEmpty()
-            }
-        }
-
-        for (i in 0..11) {
-            composeTestRule.onNodeWithTag("card_$i").assertIsDisplayed()
-        }
-    }
-
-    @Test
-    fun testCardClick() {
-        composeTestRule.waitUntil(Long.MAX_VALUE) {
-            (0..11).all { i ->
-                composeTestRule.onAllNodesWithTag("card_$i").fetchSemanticsNodes().isNotEmpty()
-            }
-        }
-
-        composeTestRule.onNodeWithTag("card_0").performClick()
-        composeTestRule.onNodeWithTag("card_11").performClick()
-    }
 }
