@@ -6,7 +6,7 @@
 # Overview
 <table>
   <tr>
-    <td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080756.png" width="200" style="display: inline" /></td>
+    <td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_080756.png?raw=true" width="200" style="display: inline" /></td>
     <td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075800.png" width="200" style="display: inline" /></td>
 <td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075825.png" width="200" style="display: inline" /></td>
 <td><img src="https://github.com/fpmi-pmvs2025/pmvs12b-lab8-capricorn/blob/d5131407b6bc47a4c3687d1e573d50d6a05bacad/imgs/Screenshot_20250405_075859.png" width="200" style="display: inline" /></td>
