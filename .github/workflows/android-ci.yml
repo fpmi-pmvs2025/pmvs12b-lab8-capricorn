@@ -39,7 +39,7 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Run unit tests
-        run: ./gradlew testDebugUnitTest
+        run: ./gradlew testDebugUnitTest --tests "!**/apiDependentTest/**"
 
       - name: Cache Android Emulator
         uses: actions/cache@v3
@@ -58,4 +58,4 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           emulator-options: -no-snapshot-save -gpu swiftshader_indirect -no-window -noaudio -no-boot-anim
-          script: ./gradlew connectedDebugAndroidTest
+          script: ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.notPackage=apiDependentTest
