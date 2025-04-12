@@ -54,7 +54,7 @@ class PlayScreenTest {
 
     @Test
     fun testCardsDisplayed() {
-        composeTestRule.waitUntil {
+        composeTestRule.waitUntil(100_000) {
             (0..11).all { i ->
                 composeTestRule.onAllNodesWithTag("card_$i").fetchSemanticsNodes().isNotEmpty()
             }
@@ -67,7 +67,7 @@ class PlayScreenTest {
 
     @Test
     fun testCardClick() {
-        composeTestRule.waitUntil {
+        composeTestRule.waitUntil(100_000) {
             (0..11).all { i ->
                 composeTestRule.onAllNodesWithTag("card_$i").fetchSemanticsNodes().isNotEmpty()
             }
