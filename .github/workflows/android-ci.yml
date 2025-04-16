@@ -39,7 +39,7 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Run unit tests
-        run: ./gradlew testDebugUnitTest --tests "!**/apiDependentTest/**"
+        run: ./gradlew testDebugUnitTest
 
       - name: Cache Android Emulator
         uses: actions/cache@v3

@@ -117,4 +117,30 @@ dependencies {
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.46.1")
     androidTestImplementation("org.mockito:mockito-android:5.3.1")
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    // Core dependencies
+    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4") // or latest version
+
+    // Testing dependencies
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:4.8.0") // or latest version
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0") // for Kotlin DSL support
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4") // for coroutine testing
+
+    // Retrofit (for the API service)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // OkHttp (for mock responses)
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.10.0") // or latest version
+
+    // Room Database (if you're using it)
+    implementation("androidx.room:room-runtime:2.4.3")
+    implementation("androidx.room:room-ktx:2.4.3")
+    kapt("androidx.room:room-compiler:2.4.3")
+    testImplementation("androidx.room:room-testing:2.4.3")
+
+    // AndroidX Test (if you need Android-specific testing)
+    testImplementation("androidx.test:core:1.5.0")
+    testImplementation("androidx.test.ext:junit:1.1.5")
 }
