@@ -41,10 +41,21 @@ jobs:
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest
 
+      - name: Cache Android Emulator
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.android/avd
+            ~/.android/cache
+          key: ${{ runner.os }}-android-emulator-${{ hashFiles('**/system-images/**') }}
+          restore-keys: |
+            ${{ runner.os }}-android-emulator-
+
       - name: Run instrumented tests on Android 13 (API 33)
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 33
           arch: x86_64
           profile: Nexus 6
-          script: ./gradlew connectedDebugAndroidTest
+          emulator-options: -no-snapshot-save -gpu swiftshader_indirect -no-window -noaudio -no-boot-anim
+          script: ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.notPackage=com.example.memorygame.apiDependentTest

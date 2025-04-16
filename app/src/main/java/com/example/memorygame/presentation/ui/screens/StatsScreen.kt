@@ -1,4 +1,4 @@
-package com.example.memorygame.presentation.ui.screens
+package com.example.memorygame.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,12 +11,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.memorygame.presentation.PlayViewModel
+import com.example.memorygame.PlayViewModel
 import com.example.memorygame.R
+import com.example.memorygame.data.entity.Statistic
+import com.example.memorygame.ui.theme.MemoryGameTheme
 import com.example.memorygame.util.formatDate
 import com.example.memorygame.util.formatDuration
 
@@ -31,6 +35,7 @@ fun StatsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
+                modifier = Modifier.testTag("stats_top_bar"),
                 title = { Text(stringResource(R.string.stats_title),
                     color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.fillMaxWidth()) },
@@ -73,7 +78,8 @@ fun StatsScreen(
                                 startTime = formatDate(gameStats.startTime),
                                 duration = formatDuration(gameStats.duration),
                                 numberOfCards = gameStats.numberOfCards,
-                                attempts = gameStats.attempts
+                                attempts = gameStats.attempts,
+                                modifier = Modifier.testTag("stat_item_${gameStats.startTime.time}")
                             )
                         }
                     }
@@ -84,9 +90,9 @@ fun StatsScreen(
 }
 
 @Composable
-fun StatCard(startTime: String, duration: String, numberOfCards: Int, attempts: Int) {
+fun StatCard(startTime: String, duration: String, numberOfCards: Int, attempts: Int, modifier: Modifier) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         shape = MaterialTheme.shapes.medium,

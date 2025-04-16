@@ -1,6 +1,5 @@
-package com.example.memorygame.presentation.ui.screens
+package com.example.memorygame.screens
 
-import android.content.pm.ActivityInfo
 import android.widget.ImageView
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.animateFloatAsState
@@ -11,25 +10,30 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bumptech.glide.Glide
-import com.example.memorygame.presentation.PlayViewModel
+import com.example.memorygame.ui.theme.MemoryGameTheme
+import com.example.memorygame.PlayViewModel
 import com.example.memorygame.R
 import com.example.memorygame.data.entity.Statistic
-import com.example.memorygame.util.findActivity
 import com.example.memorygame.util.formatDuration
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -43,18 +47,6 @@ fun PlayScreen(
     onBackClick: () -> Unit,
     viewModel: PlayViewModel = hiltViewModel()
 ) {
-    val context = LocalContext.current
-    val activity = context.findActivity()
-
-    DisposableEffect(Unit) {
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-
-        onDispose {
-            activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-        }
-    }
-
-
     val scope = rememberCoroutineScope()
     val cards by viewModel.cards.collectAsState()
     val openedCards = remember { mutableStateListOf<Int>() }
@@ -67,12 +59,12 @@ fun PlayScreen(
     val isGameCompleted = matchedPairs.value == numberOfCards / 2
     val showCompletionDialog = remember { mutableStateOf(false) }
 
+    // Определяем количество колонок в зависимости от количества карт
     val columns = when {
-        numberOfCards == 4 -> 2
-        numberOfCards == 6 -> 3
-        numberOfCards == 12 -> 3
-        numberOfCards == 24 -> 4
-        else -> 4
+        numberOfCards <= 6 -> 2
+        numberOfCards <= 12 -> 3
+        numberOfCards <= 20 -> 4
+        else -> 5
     }
 
     LaunchedEffect(Unit) {
@@ -115,6 +107,7 @@ fun PlayScreen(
     Scaffold(
         topBar = {
             TopAppBar(
+                modifier = Modifier.testTag("play_screen_top_bar"),
                 title = {
                         Text(
                             text = stringResource(R.string.play_title),
@@ -123,7 +116,10 @@ fun PlayScreen(
                         )
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBackClick) {
+                    IconButton(
+                        onClick = onBackClick,
+                        modifier = Modifier.testTag("play_screen_back_button")
+                    ) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = stringResource(R.string.back)
@@ -152,7 +148,8 @@ fun PlayScreen(
                     StatCard(
                         duration = formatDuration(duration),
                         matchedPairs = matchedPairs.value,
-                        totalAttempts = totalFlips.value
+                        totalAttempts = totalFlips.value,
+                        modifier = Modifier.testTag("stat_card")
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -168,6 +165,7 @@ fun PlayScreen(
                     ) {
                         items(cards) { card ->
                             FlipCard(
+                                modifier = Modifier.testTag("card_${card.id}"),
                                 card = card,
                                 isMatched = matchedCards.contains(card.id),
                                 isOpened = openedCards.contains(card.id),
@@ -194,7 +192,7 @@ fun PlayScreen(
                                             }
                                         }
                                     }
-                                }
+                                },
                             )
                         }
                     }
@@ -210,7 +208,8 @@ fun FlipCard(
     isMatched: Boolean,
     isOpened: Boolean,
     isRotated: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier
 ) {
     val rotation by animateFloatAsState(
         targetValue = if (isRotated) 180f else 0f,
@@ -218,7 +217,7 @@ fun FlipCard(
     )
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .aspectRatio(0.7f)
             .graphicsLayer {
@@ -255,6 +254,7 @@ fun FlipCard(
             }
         }
 
+        // Лицевая сторона карточки
         if (rotation > 90f) {
             Box(
                 modifier = Modifier
@@ -283,9 +283,9 @@ fun FlipCard(
 }
 
 @Composable
-fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
+fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int, modifier: Modifier = Modifier) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(8.dp),
         shape = RoundedCornerShape(10.dp),
@@ -301,6 +301,7 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // Строка с подписями
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -330,6 +331,7 @@ fun StatCard(duration: String, matchedPairs: Int, totalAttempts: Int) {
 
             Spacer(modifier = Modifier.height(4.dp))
 
+            // Строка со значениями
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -368,3 +370,17 @@ data class CardData(
     val value: String,
     val image: String
 )
+
+/*@Preview(showBackground = true)
+@Composable
+fun PlayPreview() {
+    MemoryGameTheme(
+        dynamicColor = false
+    ) {
+        PlayScreen(
+            12,
+            onNewGameClick = {},
+            onFabClick = {}
+        )
+    }
+}*/
