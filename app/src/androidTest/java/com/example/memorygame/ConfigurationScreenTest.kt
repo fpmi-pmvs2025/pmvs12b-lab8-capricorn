@@ -2,8 +2,8 @@ package com.example.memorygame
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.performClick
-import com.example.memorygame.screens.ConfigurationScreen
-import com.example.memorygame.ui.theme.MemoryGameTheme
+import com.example.memorygame.presentation.ui.screens.ConfigurationScreen
+import com.example.memorygame.presentation.ui.theme.MemoryGameTheme
 import com.example.memorygame.testUtil.onNodeWithTestTag
 import org.junit.Rule
 import org.junit.Test

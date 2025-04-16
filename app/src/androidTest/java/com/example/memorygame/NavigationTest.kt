@@ -1,16 +1,12 @@
 package com.example.memorygame
 
 import androidx.activity.compose.setContent
-import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onAllNodesWithTag
-import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
-import com.example.memorygame.screens.MainActivity
-import com.example.memorygame.screens.PlayScreen
+import com.example.memorygame.presentation.ui.MyApp
+import com.example.memorygame.presentation.ui.screens.MainActivity
+import com.example.memorygame.presentation.ui.theme.MemoryGameTheme
 import com.example.memorygame.testUtil.onNodeWithTestTag
-import com.example.memorygame.ui.theme.MemoryGameTheme
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

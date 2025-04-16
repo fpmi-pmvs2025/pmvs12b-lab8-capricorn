@@ -8,7 +8,6 @@ import com.example.memorygame.data.model.Cards
 import com.example.memorygame.data.model.DeckResponse
 import com.example.memorygame.data.retrofit.CardApiService
 import com.example.memorygame.domain.GameRepository
-import com.example.memorygame.screens.CardData
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -18,7 +17,6 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.any
-import org.mockito.kotlin.doThrow
 import org.mockito.kotlin.eq
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify

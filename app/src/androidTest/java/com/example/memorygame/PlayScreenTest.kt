@@ -3,15 +3,12 @@ package com.example.memorygame
 import androidx.activity.compose.setContent
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.memorygame.R
-import com.example.memorygame.screens.MainActivity
+import com.example.memorygame.presentation.ui.screens.MainActivity
+import com.example.memorygame.presentation.ui.theme.MemoryGameTheme
 import com.example.memorygame.screens.PlayScreen
-import com.example.memorygame.ui.theme.MemoryGameTheme
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

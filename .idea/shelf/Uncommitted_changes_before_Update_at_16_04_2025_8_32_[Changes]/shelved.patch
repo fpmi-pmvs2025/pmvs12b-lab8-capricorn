@@ -1,0 +1,25 @@
+Index: app/src/test/java/com/example/memorygame/ExampleUnitTest.kt
+===================================================================
+diff --git a/app/src/test/java/com/example/memorygame/ExampleUnitTest.kt b/app/src/test/java/com/example/memorygame/ExampleUnitTest.kt
+deleted file mode 100644
+--- a/app/src/test/java/com/example/memorygame/ExampleUnitTest.kt	(revision e8435df771afe0db6e35b866d4b08325f892732a)
++++ /dev/null	(revision e8435df771afe0db6e35b866d4b08325f892732a)
+@@ -1,17 +0,0 @@
+-package com.example.memorygame
+-
+-import org.junit.Test
+-
+-import org.junit.Assert.*
+-
+-/**
+- * Example local unit test, which will execute on the development machine (host).
+- *
+- * See [testing documentation](http://d.android.com/tools/testing).
+- */
+-class ExampleUnitTest {
+-    @Test
+-    fun addition_isCorrect() {
+-        assertEquals(4, 2 + 2)
+-    }
+-}
+\ No newline at end of file
