@@ -9,8 +9,8 @@ import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.memorygame.presentation.ui.MyApp
 import com.example.memorygame.presentation.ui.screens.MainActivity
+import com.example.memorygame.presentation.ui.screens.PlayScreen
 import com.example.memorygame.presentation.ui.theme.MemoryGameTheme
-import com.example.memorygame.screens.PlayScreen
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,13 +26,12 @@ class ApiDependentTest {
             MemoryGameTheme(darkTheme = false) {
                 PlayScreen(
                     numberOfCards = 12,
-                    onNewGameClick = {},
                     onBackClick = {}
                 )
             }
         }
 
-        composeTestRule.waitUntil(1000000) {
+        composeTestRule.waitUntil(10000) {
             (0..11).all { i ->
                 composeTestRule.onAllNodesWithTag("card_$i").fetchSemanticsNodes().isNotEmpty()
             }
@@ -49,13 +48,12 @@ class ApiDependentTest {
             MemoryGameTheme(darkTheme = false) {
                 PlayScreen(
                     numberOfCards = 12,
-                    onNewGameClick = {},
                     onBackClick = {}
                 )
             }
         }
 
-        composeTestRule.waitUntil(1000000) {
+        composeTestRule.waitUntil(10000) {
             (0..11).all { i ->
                 composeTestRule.onAllNodesWithTag("card_$i").fetchSemanticsNodes().isNotEmpty()
             }
@@ -83,7 +81,7 @@ class ApiDependentTest {
 
         composeTestRule.onNodeWithTag("play_screen_top_bar").assertExists()
 
-        composeTestRule.waitUntil(1000000) {
+        composeTestRule.waitUntil(10000) {
             (0..11).all { i ->
                 composeTestRule.onAllNodesWithTag("card_$i").fetchSemanticsNodes().isNotEmpty()
             }

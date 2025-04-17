@@ -5,8 +5,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.performClick
 import com.example.memorygame.presentation.ui.screens.MainActivity
+import com.example.memorygame.presentation.ui.screens.StatsScreen
 import com.example.memorygame.presentation.ui.theme.MemoryGameTheme
-import com.example.memorygame.screens.StatsScreen
 import com.example.memorygame.testUtil.onNodeWithTestTag
 import org.junit.Rule
 import org.junit.Test

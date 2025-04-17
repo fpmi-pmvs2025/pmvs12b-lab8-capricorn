@@ -7,8 +7,8 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.memorygame.presentation.ui.screens.MainActivity
+import com.example.memorygame.presentation.ui.screens.PlayScreen
 import com.example.memorygame.presentation.ui.theme.MemoryGameTheme
-import com.example.memorygame.screens.PlayScreen
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -26,7 +26,6 @@ class PlayScreenTest {
             MemoryGameTheme(darkTheme = false) {
                 PlayScreen(
                     numberOfCards = 12,
-                    onNewGameClick = {},
                     onBackClick = {}
                 )
             }

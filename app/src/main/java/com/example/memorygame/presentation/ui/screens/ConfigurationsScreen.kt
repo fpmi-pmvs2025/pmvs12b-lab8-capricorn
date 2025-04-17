@@ -24,6 +24,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.memorygame.R
@@ -44,7 +45,8 @@ fun ConfigurationScreen(
                     color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.fillMaxWidth()) },
                 navigationIcon = {
-                    IconButton(onClick = onBackClick) {
+                    IconButton(onClick = onBackClick,
+                        modifier = Modifier.testTag("config_screen_back_button")) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = stringResource(R.string.back)
@@ -74,7 +76,8 @@ fun ConfigurationScreen(
                     items(configurations) { numberOfCards ->
                         ConfigurationItem(
                             text = stringResource(R.string.play_with_cards, numberOfCards),
-                            onClick = { onConfigurationSelected(numberOfCards) }
+                            onClick = { onConfigurationSelected(numberOfCards) },
+                            testTag = "config_item_$numberOfCards"
                         )
                     }
                 }
@@ -86,11 +89,13 @@ fun ConfigurationScreen(
 @Composable
 fun ConfigurationItem(
     text: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    testTag: String = ""
 ) {
     FilledTonalButton(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth()
+            .testTag(testTag),
         colors = ButtonDefaults.filledTonalButtonColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
