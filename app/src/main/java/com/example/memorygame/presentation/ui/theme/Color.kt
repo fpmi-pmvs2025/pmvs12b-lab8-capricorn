@@ -11,6 +11,6 @@ val Dark = Color(0xFF000000)
 
 val LightBlue = Color(0xFFE6F0FF)
 
-val Green = Color(0,153,0)
+val GreenArabic = Color(0,153,0)
 
 val SkyBlue = Color(0,127,255)

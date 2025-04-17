@@ -9,9 +9,9 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.example.memorygame.presentation.ui.screens.ConfigurationScreen
 import com.example.memorygame.presentation.ui.screens.MainScreen
+import com.example.memorygame.presentation.ui.screens.PlayScreen
 import com.example.memorygame.presentation.ui.screens.SettingsScreen
-import com.example.memorygame.screens.PlayScreen
-import com.example.memorygame.screens.StatsScreen
+import com.example.memorygame.presentation.ui.screens.StatsScreen
 
 @Composable
 fun MyApp() {
@@ -51,9 +51,6 @@ fun MyApp() {
             val numberOfCards = backStackEntry.arguments?.getInt("numberOfCards") ?: 4
             PlayScreen(
                 numberOfCards = numberOfCards,
-                onNewGameClick = {
-                    navController.navigate("configuration")
-                },
                 onBackClick = { navController.popBackStack() }
             )
         }

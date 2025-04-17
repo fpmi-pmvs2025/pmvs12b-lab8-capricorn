@@ -1,4 +1,4 @@
-package com.example.memorygame.screens
+package com.example.memorygame.presentation.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn

@@ -3,7 +3,7 @@ package com.example.memorygame.domain
 import com.example.memorygame.data.db.GameDataBase
 import com.example.memorygame.data.entity.Statistic
 import com.example.memorygame.data.retrofit.CardApiService
-import com.example.memorygame.screens.CardData
+import com.example.memorygame.presentation.ui.screens.CardData
 
 class GameRepository(
     private val db: GameDataBase,

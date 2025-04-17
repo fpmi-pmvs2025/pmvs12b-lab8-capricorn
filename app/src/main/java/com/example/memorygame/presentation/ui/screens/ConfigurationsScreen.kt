@@ -24,10 +24,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.memorygame.R
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,12 +44,10 @@ fun ConfigurationScreen(
                     color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.fillMaxWidth()) },
                 navigationIcon = {
-                    IconButton(
-                        onClick = onBackClick,
-                        modifier = Modifier.testTag("config_screen_back_button")) {
+                    IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(R.string.back),
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 }
@@ -76,8 +74,7 @@ fun ConfigurationScreen(
                     items(configurations) { numberOfCards ->
                         ConfigurationItem(
                             text = stringResource(R.string.play_with_cards, numberOfCards),
-                            onClick = { onConfigurationSelected(numberOfCards) },
-                            testTag = "config_item_$numberOfCards"
+                            onClick = { onConfigurationSelected(numberOfCards) }
                         )
                     }
                 }
@@ -89,13 +86,11 @@ fun ConfigurationScreen(
 @Composable
 fun ConfigurationItem(
     text: String,
-    onClick: () -> Unit,
-    testTag: String = ""
+    onClick: () -> Unit
 ) {
     FilledTonalButton(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth()
-            .testTag(testTag),
+        modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.filledTonalButtonColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
