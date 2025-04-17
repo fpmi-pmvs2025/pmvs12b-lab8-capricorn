@@ -1,0 +1,50 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Игра на память</string>
+    <string name="game_title">Игра на память</string>
+    <string name="play">Играть</string>
+    <string name="settings">Настройки</string>
+    <string name="stats">Статистика</string>
+    <string name="configuration_title">Выберите конфигурацию</string>
+    <string name="play_with_cards">Играть с %d карточками</string>
+    <string name="select_configuration">Выбрать конфигурацию</string>
+    <string name="settings_title">Настройки</string>
+    <string name="appearance_category">Внешний вид</string>
+    <string name="language_category">Язык</string>
+    <string name="dark_theme_title">Тёмная тема</string>
+    <string name="dark_theme_desc">Включить тёмный режим</string>
+    <string name="language_title">Язык</string>
+    <string name="language_desc">Изменить язык приложения</string>
+    <string name="select_language">Выберите язык</string>
+    <string name="english">Английский</string>
+    <string name="russian">Русский</string>
+    <string name="stats_title">Статистика игр</string>
+    <string name="no_stats_data">Нет данных о статистике</string>
+    <string name="start_time">Время начала:</string>
+    <string name="duration">Длительность:</string>
+    <string name="cards_count">Карточек:</string>
+    <string name="attempts">Попытки:</string>
+    <string name="attempts_label">Попытки</string>
+    <string name="matched_pairs_label">Найдено пар</string>
+    <string name="time_label">Время</string>
+    <string name="date_format">dd.MM.yyyy HH:mm</string>
+    <string name="duration_format">%1$d мин %2$d сек</string>
+    <string name="light_theme">Светлая</string>
+    <string name="dark_theme">Темная</string>
+    <string name="congratulations">Поздравляю!</string>
+    <string name="game_completed">Вы завершили игру!</string>
+    <string name="back">Назад</string>
+    <string name="play_title">Игровое поле</string>
+    <plurals name="minutes" tools:ignore="MissingDefaultResource">
+        <item quantity="one">%d минута</item>
+        <item quantity="few">%d минуты</item>
+        <item quantity="many">%d минут</item>
+        <item quantity="other">%d минут</item>
+    </plurals>
+
+    <plurals name="seconds" tools:ignore="MissingDefaultResource">
+        <item quantity="one">%d секунда</item>
+        <item quantity="few">%d секунды</item>
+        <item quantity="many">%d секунд</item>
+        <item quantity="other">%d секунд</item>
+    </plurals>
+</resources>
